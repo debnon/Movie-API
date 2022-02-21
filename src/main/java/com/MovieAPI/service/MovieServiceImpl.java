@@ -1,8 +1,8 @@
 package com.MovieAPI.service;
 
 import com.MovieAPI.model.Movie;
-import com.techreturners.Moviemanager.model.Movie;
-import com.techreturners.Moviemanager.repository.MovieManagerRepository;
+import com.MovieAPI.repository.MovieRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,41 +13,52 @@ import java.util.List;
 public class MovieServiceImpl implements MovieService  {
 
     @Autowired
-    MovieManagerRepository MovieManagerRepository;
+    MovieRepository MovieRepository;
 
     @Override
     public List<Movie> getAllMovies() {
         List<Movie> Movies = new ArrayList<>();
-        MovieManagerRepository.findAll().forEach(Movies::add);
+        MovieRepository.findAll().forEach(Movies::add);
         return Movies;
     }
 
     @Override
     public Movie insertMovie(Movie Movie) {
-        return MovieManagerRepository.save(Movie);
+        return MovieRepository.save(Movie);
     }
 
     @Override
     public Movie getMovieById(Long id) {
-        return MovieManagerRepository.findById(id).isPresent()?MovieManagerRepository.findById(id).get():null;
+        return MovieRepository.findById(id).isPresent()?MovieRepository.findById(id).get():null;
     }
 
     //User Story 4 - Update Movie By Id Solution
     @Override
     public void updateMovieById(Long id, Movie Movie) {
-        Movie retrievedMovie = MovieManagerRepository.findById(id).get();
+        Movie retrievedMovie = MovieRepository.findById(id).get();
 
         retrievedMovie.setTitle(Movie.getTitle());
         retrievedMovie.setDescription(Movie.getDescription());
-        retrievedMovie.setAuthor(Movie.getAuthor());
         retrievedMovie.setGenre(Movie.getGenre());
 
-        MovieManagerRepository.save(retrievedMovie);
+        MovieRepository.save(retrievedMovie);
     }
 
     @Override
     public void deleteMovieById(Long id) {
-        MovieManagerRepository.deleteById(id);
+        MovieRepository.deleteById(id);
     }
+
+//    @Override
+//    public Movie getMovieByTitle(String title) {
+//        return MovieRepository.findByTitle(title).isPresent()?MovieRepository.findByTitle(title).get():null;
+//    }
+//
+//    @Override
+//    public ArrayList<Movie> getMovieByAttributes(ArrayList<String> attributes) {
+//        //
+//    }
+
+
 
 }
