@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class BookManagerServiceImpl implements BookManagerService {
+public class MovieServiceImpl implements MovieService  {
 
     @Autowired
     BookManagerRepository bookManagerRepository;

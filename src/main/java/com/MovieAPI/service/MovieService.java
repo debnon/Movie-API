@@ -1,12 +1,13 @@
 package com.MovieAPI.service;
 
+import com.MovieAPI.model.Movie;
 import com.techreturners.bookmanager.model.Book;
 
 import java.util.List;
 
-public interface BookManagerService {
+public interface MovieService {
 
-    List<Book> getAllBooks();
+    List<Movie> getAllBooks();
     Book insertBook(Book book);
     Book getBookById(Long id);
 
@@ -15,3 +16,5 @@ public interface BookManagerService {
 
     void deleteBookById(Long id);
 }
+
+
