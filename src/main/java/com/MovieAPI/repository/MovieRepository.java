@@ -1,10 +1,10 @@
 package com.MovieAPI.repository;
 
-import com.techreturners.bookmanager.model.Book;
+import com.MovieAPI.model.Movie;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BookManagerRepository extends CrudRepository<Book, Long> {
+public interface MovieRepository extends CrudRepository<Movie, Long> {
 
 }
