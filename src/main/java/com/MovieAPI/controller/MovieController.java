@@ -1,9 +1,10 @@
 package com.MovieAPI.controller;
 
-import com.techreturners.bookmanager.exception.DuplicateIDException;
-import com.techreturners.bookmanager.exception.GetEmptyException;
-import com.techreturners.bookmanager.model.Book;
-import com.techreturners.bookmanager.service.BookManagerService;
+import com.MovieAPI.model.Movie;
+import com.techreturners.Moviemanager.exception.DuplicateIDException;
+import com.techreturners.Moviemanager.exception.GetEmptyException;
+import com.techreturners.Moviemanager.model.Movie;
+import com.techreturners.Moviemanager.service.MovieManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,62 +18,62 @@ import java.util.List;
 public class MovieController {
 
     @Autowired
-    BookManagerService bookManagerService;
+    MovieManagerService MovieManagerService;
 
     @GetMapping
-    public ResponseEntity<List<Book>> getAllBooks() {
-        List<Book> books = bookManagerService.getAllBooks();
-        if (books.isEmpty()) {
-            throw new GetEmptyException("No books present in the database");
+    public ResponseEntity<List<Movie>> getAllMovies() {
+        List<Movie> Movies = MovieManagerService.getAllMovies();
+        if (Movies.isEmpty()) {
+            throw new GetEmptyException("No Movies present in the database");
         }
 
-        return new ResponseEntity<>(books, HttpStatus.OK);
+        return new ResponseEntity<>(Movies, HttpStatus.OK);
     }
 
-    @GetMapping({"/{bookId}"})
-    public ResponseEntity<Book> getBookById(@PathVariable Long bookId) {
-        Book book = bookManagerService.getBookById(bookId);
-        //Return exception message when no book is present with given id
-        if (book == null) {
-            throw new GetEmptyException("There is no book present with that ID");
+    @GetMapping({"/{MovieId}"})
+    public ResponseEntity<Movie> getMovieById(@PathVariable Long MovieId) {
+        Movie Movie = MovieManagerService.getMovieById(MovieId);
+        //Return exception message when no Movie is present with given id
+        if (Movie == null) {
+            throw new GetEmptyException("There is no Movie present with that ID");
         }
-        return new ResponseEntity<>(book, HttpStatus.OK);
+        return new ResponseEntity<>(Movie, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Book> addBook(@RequestBody Book book) {
-        Book existingBook = bookManagerService.getBookById(book.getId());
-        if (existingBook != null) {
-            throw new DuplicateIDException("There is already a book with the given ID.. Please try with another ID");
+    public ResponseEntity<Movie> addMovie(@RequestBody Movie Movie) {
+        Movie existingMovie = MovieManagerService.getMovieById(Movie.getId());
+        if (existingMovie != null) {
+            throw new DuplicateIDException("There is already a Movie with the given ID.. Please try with another ID");
         }
 
-        Book newBook = bookManagerService.insertBook(book);
+        Movie newMovie = MovieManagerService.insertMovie(Movie);
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("book", "/api/v1/book/" + newBook.getId().toString());
-        return new ResponseEntity<>(newBook, httpHeaders, HttpStatus.CREATED);
+        httpHeaders.add("Movie", "/api/v1/Movie/" + newMovie.getId().toString());
+        return new ResponseEntity<>(newMovie, httpHeaders, HttpStatus.CREATED);
     }
 
-    //User Story 4 - Update Book By Id Solution
-    @PutMapping({"/{bookId}"})
-    public ResponseEntity<Book> updateBookById(@PathVariable("bookId") Long bookId, @RequestBody Book book) {
-        book = bookManagerService.getBookById(bookId);
-        //Return exception message when user is trying to update a book that does not exist
-        if (book == null) {
-            throw new GetEmptyException("Book not found. Please try to update a book that exists.");
+    //User Story 4 - Update Movie By Id Solution
+    @PutMapping({"/{MovieId}"})
+    public ResponseEntity<Movie> updateMovieById(@PathVariable("MovieId") Long MovieId, @RequestBody Movie Movie) {
+        Movie = MovieManagerService.getMovieById(MovieId);
+        //Return exception message when user is trying to update a Movie that does not exist
+        if (Movie == null) {
+            throw new GetEmptyException("Movie not found. Please try to update a Movie that exists.");
         }
-        bookManagerService.updateBookById(bookId, book);
-        return new ResponseEntity<>(bookManagerService.getBookById(bookId), HttpStatus.OK);
+        MovieManagerService.updateMovieById(MovieId, Movie);
+        return new ResponseEntity<>(MovieManagerService.getMovieById(MovieId), HttpStatus.OK);
     }
 
-    //delete book by id
-    @DeleteMapping({"/{bookId}"})
-    public ResponseEntity<Book> deleteBookById(@PathVariable("bookId") Long bookId) {
-        Book book = bookManagerService.getBookById(bookId);
-        //Return exception message when user is trying to delete a book that does not exist
-        if (book == null) {
-            throw new GetEmptyException("Book not found. Please try to delete a book that exists.");
+    //delete Movie by id
+    @DeleteMapping({"/{MovieId}"})
+    public ResponseEntity<Movie> deleteMovieById(@PathVariable("MovieId") Long MovieId) {
+        Movie Movie = MovieManagerService.getMovieById(MovieId);
+        //Return exception message when user is trying to delete a Movie that does not exist
+        if (Movie == null) {
+            throw new GetEmptyException("Movie not found. Please try to delete a Movie that exists.");
         }
-        bookManagerService.deleteBookById(bookId);
+        MovieManagerService.deleteMovieById(MovieId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

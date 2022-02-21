@@ -1,20 +1,20 @@
 package com.MovieAPI.service;
 
 import com.MovieAPI.model.Movie;
-import com.techreturners.bookmanager.model.Book;
+import com.techreturners.Moviemanager.model.Movie;
 
 import java.util.List;
 
 public interface MovieService {
 
-    List<Movie> getAllBooks();
-    Book insertBook(Book book);
-    Book getBookById(Long id);
+    List<Movie> getAllMovies();
+    Movie insertMovie(Movie Movie);
+    Movie getMovieById(Long id);
 
-    //User Story 4 - Update Book By Id Solution
-    void updateBookById(Long id, Book book);
+    //User Story 4 - Update Movie By Id Solution
+    void updateMovieById(Long id, Movie Movie);
 
-    void deleteBookById(Long id);
+    void deleteMovieById(Long id);
 }
 
 

@@ -1,7 +1,7 @@
 package com.MovieAPI.service;
 
-import com.techreturners.bookmanager.model.Book;
-import com.techreturners.bookmanager.repository.BookManagerRepository;
+import com.techreturners.Moviemanager.model.Movie;
+import com.techreturners.Moviemanager.repository.MovieManagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,41 +12,41 @@ import java.util.List;
 public class UserServiceImpl implements UserService  {
 
     @Autowired
-    BookManagerRepository bookManagerRepository;
+    MovieManagerRepository MovieManagerRepository;
 
     @Override
-    public List<Book> getAllBooks() {
-        List<Book> books = new ArrayList<>();
-        bookManagerRepository.findAll().forEach(books::add);
-        return books;
+    public List<Movie> getAllMovies() {
+        List<Movie> Movies = new ArrayList<>();
+        MovieManagerRepository.findAll().forEach(Movies::add);
+        return Movies;
     }
 
     @Override
-    public Book insertBook(Book book) {
-        return bookManagerRepository.save(book);
+    public Movie insertMovie(Movie Movie) {
+        return MovieManagerRepository.save(Movie);
     }
 
     @Override
-    public Book getBookById(Long id) {
-        return bookManagerRepository.findById(id).isPresent()?bookManagerRepository.findById(id).get():null;
+    public Movie getMovieById(Long id) {
+        return MovieManagerRepository.findById(id).isPresent()?MovieManagerRepository.findById(id).get():null;
     }
 
-    //User Story 4 - Update Book By Id Solution
+    //User Story 4 - Update Movie By Id Solution
     @Override
-    public void updateBookById(Long id, Book book) {
-        Book retrievedBook = bookManagerRepository.findById(id).get();
+    public void updateMovieById(Long id, Movie Movie) {
+        Movie retrievedMovie = MovieManagerRepository.findById(id).get();
 
-        retrievedBook.setTitle(book.getTitle());
-        retrievedBook.setDescription(book.getDescription());
-        retrievedBook.setAuthor(book.getAuthor());
-        retrievedBook.setGenre(book.getGenre());
+        retrievedMovie.setTitle(Movie.getTitle());
+        retrievedMovie.setDescription(Movie.getDescription());
+        retrievedMovie.setAuthor(Movie.getAuthor());
+        retrievedMovie.setGenre(Movie.getGenre());
 
-        bookManagerRepository.save(retrievedBook);
+        MovieManagerRepository.save(retrievedMovie);
     }
 
     @Override
-    public void deleteBookById(Long id) {
-        bookManagerRepository.deleteById(id);
+    public void deleteMovieById(Long id) {
+        MovieManagerRepository.deleteById(id);
     }
 
 }
