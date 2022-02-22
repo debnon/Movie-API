@@ -1,5 +1,6 @@
 package com.MovieAPI.service;
 
+import com.MovieAPI.model.Genre;
 import com.MovieAPI.model.Movie;
 import com.MovieAPI.repository.MovieRepository;
 
@@ -50,14 +51,46 @@ public class MovieServiceImpl implements MovieService  {
     }
 
 //    @Override
-//    public Movie getMovieByTitle(String title) {
+//    public ArrayList<Movie> getMovieByTitle(String title) {
+//        MovieRepository.findByName("yo");
 //        return MovieRepository.findByTitle(title).isPresent()?MovieRepository.findByTitle(title).get():null;
 //    }
-//
-//    @Override
-//    public ArrayList<Movie> getMovieByAttributes(ArrayList<String> attributes) {
-//        //
-//    }
+
+    @Override
+    public List<Movie> getMovieByAttributes(String title, Genre genre) {
+
+        List<Movie> requestedMovies = new ArrayList<>();
+        if (title != null) {
+
+            requestedMovies = MovieRepository.findByTitle(title);
+            System.out.println("requestedMovies: " + requestedMovies);
+        }
+
+        List<Movie> helperMovies1 = new ArrayList<>();
+        if (genre != null) {
+            helperMovies1 = MovieRepository.findByGenre(genre);
+            System.out.println("helper1: " + helperMovies1);
+        } if (title == null) {
+            requestedMovies = helperMovies1;
+        }
+
+//        else {
+//            helperMovies1 = requestedMovies;
+//        }
+
+        List<Movie> helperMovies2 = new ArrayList<>();
+        if (genre != null && title != null) {
+            for (Movie movie : requestedMovies) {
+                System.out.println("movie: " + movie);
+                if (helperMovies1.contains(movie)) {
+                    helperMovies2.add(movie);
+                }
+            }
+            requestedMovies = helperMovies2;
+        }
+
+        return requestedMovies;
+    }
 
 
 
