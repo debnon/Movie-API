@@ -70,17 +70,24 @@ public class MovieServiceImpl implements MovieService  {
         if (genre != null) {
             helperMovies1 = MovieRepository.findByGenre(genre);
             System.out.println("helper1: " + helperMovies1);
+        } if (title == null) {
+            requestedMovies = helperMovies1;
         }
-
+//        else {
+//            helperMovies1 = requestedMovies;
+//        }
         List<Movie> helperMovies2 = new ArrayList<>();
-        for (Movie movie : requestedMovies) {
-            System.out.println("movie: " + movie);
-            if (helperMovies1.contains(movie)) {
-                helperMovies2.add(movie);
+        if (genre != null && title != null) {
+            for (Movie movie : requestedMovies) {
+                System.out.println("movie: " + movie);
+                if (helperMovies1.contains(movie)) {
+                    helperMovies2.add(movie);
+                }
             }
+            requestedMovies = helperMovies2;
         }
 
-        return helperMovies1;
+        return requestedMovies;
     }
 
 
