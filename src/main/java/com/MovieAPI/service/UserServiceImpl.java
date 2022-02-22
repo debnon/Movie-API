@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 //        return userRepository.save(user);
 //    }
 
-    public User findByEmailIdAndPassword(String emailID, String password) {
+    public User findByEmailIDAndPassword(String emailID, String password) {
         //return userRepository.findByEmailIdAndPassword(emailID, password).isPresent() ? userRepository.findByEmailIdAndPassword(emailID, password).get() : null;
         return userRepository.findByEmailIDAndPassword(emailID, password).orElse(null);
     }
