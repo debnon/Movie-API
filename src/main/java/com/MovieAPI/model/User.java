@@ -12,7 +12,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
 public class User {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,6 +40,6 @@ public class User {
     String emailID;
 
     @Column
-    String contactNumber;
+    String contactnumber;
 
 }
