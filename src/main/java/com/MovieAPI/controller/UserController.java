@@ -22,17 +22,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-//    @PostMapping
-//    public ResponseEntity<User> addUser(@RequestBody User user) {
-//        User existingUser = userService.getUserById(user.getId());
-//        if (existingUser != null) {
-//            throw new DuplicateIDException("There is already a User with the given ID.. Please try with another ID");
-//        }
-//        User newUser = userService.addUser(user);
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        httpHeaders.add("user", "/api/admin" + newUser.getId().toString());
-//        return new ResponseEntity<>(newUser, httpHeaders, HttpStatus.CREATED);
-//    }
 
     //Registration Request
     @PostMapping
@@ -42,7 +31,7 @@ public class UserController {
             throw new DuplicateIDException("There is already a User with the given ID.. Please try with another ID");
         }
         User newUser = userService.addUser(user.getUsername(), user.getFirstname(),
-                user.getLastname(), user.getEmailID(), user.getPassword(), user.getContactNumber());
+                user.getLastname(), user.getEmailID(), user.getPassword(), user.getContactnumber());
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("user", "/api/user" + newUser.getId().toString());
         return new ResponseEntity<>(newUser, httpHeaders, HttpStatus.CREATED);
@@ -56,7 +45,7 @@ public class UserController {
             model.addAttribute("userLogin", existingUser.getEmailID());
             return "My_Account";
         } else {
-            return "Incorrect details, please enter valid emailID and password";
+            return "Incorrect details, please enter valid emailID and password!";
         }
     }
 

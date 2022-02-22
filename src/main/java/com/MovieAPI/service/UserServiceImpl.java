@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmailIDAndPassword(emailID, password).orElse(null);
     }
 
-    public User addUser(String username, String firstname, String lastname, String emailID, String password, String contactNumber) {
+    public User addUser(String username, String firstname, String lastname, String emailID, String password, String contactnumber) {
         if (emailID == null || password == null) {
             return null;
         } else {
@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
             user.setLastname(lastname);
             user.setEmailID(emailID);
             user.setPassword(password);
-            user.setContactNumber(contactNumber);
+            user.setContactnumber(contactnumber);
             return userRepository.save(user);
         }
     }
