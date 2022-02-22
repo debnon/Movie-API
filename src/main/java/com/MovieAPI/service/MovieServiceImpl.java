@@ -73,9 +73,11 @@ public class MovieServiceImpl implements MovieService  {
         } if (title == null) {
             requestedMovies = helperMovies1;
         }
+
 //        else {
 //            helperMovies1 = requestedMovies;
 //        }
+
         List<Movie> helperMovies2 = new ArrayList<>();
         if (genre != null && title != null) {
             for (Movie movie : requestedMovies) {
