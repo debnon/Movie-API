@@ -1,20 +1,29 @@
 package com.MovieAPI.model;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 
 public class User {
 
-    public User(String username, String password, String firstname, String lastname, String emailID, String contactNumber) {
-        this.username = username;
-        this.password = password;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.emailID = emailID;
-        this.contactNumber = contactNumber;
-    }
+//    public User(String username, String password, String firstname, String lastname, String emailID, String contactNumber) {
+//        this.username = username;
+//        this.password = password;
+//        this.firstname = firstname;
+//        this.lastname = lastname;
+//        this.emailID = emailID;
+//        this.contactNumber = contactNumber;
+//    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -23,32 +23,32 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).isPresent() ? userRepository.findById(id).get() : null;
     }
 
-    @Override
-    public User addUser(User user) {
-        return userRepository.save(user);
+//    @Override
+//    public User addUser(User user) {
+//        return userRepository.save(user);
+//    }
+
+    public User findByEmailIdAndPassword(String emailID, String password) {
+        //return userRepository.findByEmailIdAndPassword(emailID, password).isPresent() ? userRepository.findByEmailIdAndPassword(emailID, password).get() : null;
+        return userRepository.findByEmailIDAndPassword(emailID, password).orElse(null);
     }
 
-//    public User findByEmailIdAndPassword(String emailId, String password) {
-//        //return userRepository.findByEmailIdAndPassword(emailId, password).isPresent() ? userRepository.findByEmailIdAndPassword(emailId, password).get() : null;
-//        return userRepository.findByEmailIdAndPassword(emailId, password).orElse(null);
-//    }
-//
-//    public User addUser(String username, String firstname, String lastname, String emailId, String password, String contactnumber) {
-//        if (emailId == null || password == null) {
-//            return null;
-//        } else {
-//                if (userRepository.findByEmailId(emailId).isPresent()) {
-//                    System.out.println("Duplicate User");
-//                    return null;
-//                }
-//            User user = new User();
-//            user.setUsername(username);
-//            user.setFirstname(firstname);
-//            user.setLastname(lastname);
-//            user.setEmailID(emailId);
-//            user.setPassword(password);
-//            user.setContactNumber(contactnumber);
-//            return userRepository.save(user);
-//        }
-//    }
+    public User addUser(String username, String firstname, String lastname, String emailID, String password, String contactNumber) {
+        if (emailID == null || password == null) {
+            return null;
+        } else {
+                if (userRepository.findByEmailID(emailID).isPresent()) {
+                    System.out.println("Duplicate User");
+                    return null;
+                }
+            User user = new User();
+            user.setUsername(username);
+            user.setFirstname(firstname);
+            user.setLastname(lastname);
+            user.setEmailID(emailID);
+            user.setPassword(password);
+            user.setContactNumber(contactNumber);
+            return userRepository.save(user);
+        }
+    }
 }
