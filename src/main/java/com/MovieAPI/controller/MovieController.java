@@ -51,24 +51,24 @@ public class MovieController {
 //        return new ResponseEntity<>(Movie, HttpStatus.OK);
 //    }
 
-//    @GetMapping({"/"})
-//    public ResponseEntity<ArrayList<Movie>> getMovieByAttributes(@RequestParam(name="title") String title,
-//                                              @RequestParam(required = false) Genre genre) {
-//
-//
-//        ArrayList<String> attributes = new ArrayList<>();
-//        attributes.add(title);
-//        attributes.add(String.valueOf(genre));
-//
-//        // Movie Movie = MovieService.getMovieById(MovieId);
-//        ArrayList<Movie> requestedMovies = MovieService.getMovieByAttributes(attributes);
-//
-//
-//        if (requestedMovies == null) {
-//            throw new GetEmptyException("There is no Movie present with that ID");
-//        }
-//        return new ResponseEntity<>(Movie, HttpStatus.OK);
-//    }
+    @GetMapping({"/criteria"})
+    public ResponseEntity<ArrayList<Movie>> getMovieByAttributes(
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) Genre genre) {
+
+
+        ArrayList<String> attributes = new ArrayList<>();
+        attributes.add(title);
+        attributes.add(String.valueOf(genre));
+
+        // Movie Movie = MovieService.getMovieById(MovieId);
+        ArrayList<Movie> requestedMovies = MovieService.getMovieByAttributes(attributes);
+
+        if (requestedMovies == null) {
+            throw new GetEmptyException("There is no Movie present with that ID");
+        }
+        return new ResponseEntity<>(requestedMovies, HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<Movie> addMovie(@RequestBody Movie Movie) {

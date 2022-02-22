@@ -15,7 +15,7 @@ public interface MovieService {
 //
 //    }
 
-//    ArrayList<Movie> getMovieByAttributes(ArrayList<String> attributes);
+    ArrayList<Movie> getMovieByAttributes(ArrayList<String> attributes);
 
     //User Story 4 - Update Movie By Id Solution
     void updateMovieById(Long id, Movie Movie);
