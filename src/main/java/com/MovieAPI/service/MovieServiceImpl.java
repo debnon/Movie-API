@@ -1,5 +1,6 @@
 package com.MovieAPI.service;
 
+import com.MovieAPI.model.Genre;
 import com.MovieAPI.model.Movie;
 import com.MovieAPI.repository.MovieRepository;
 
@@ -56,14 +57,30 @@ public class MovieServiceImpl implements MovieService  {
 //    }
 
     @Override
-    public ArrayList<Movie> getMovieByAttributes(ArrayList<String> attributes) {
+    public List<Movie> getMovieByAttributes(String title, Genre genre) {
 
-        for (String attribute: attributes) {
+        List<Movie> requestedMovies = new ArrayList<>();
+        if (title != null) {
 
+            requestedMovies = MovieRepository.findByTitle(title);
+            System.out.println("requestedMovies: " + requestedMovies);
         }
 
-        MovieRepository.findByName("example");
-        //
+        List<Movie> helperMovies1 = new ArrayList<>();
+        if (genre != null) {
+            helperMovies1 = MovieRepository.findByGenre(genre);
+            System.out.println("helper1: " + helperMovies1);
+        }
+
+        List<Movie> helperMovies2 = new ArrayList<>();
+        for (Movie movie : requestedMovies) {
+            System.out.println("movie: " + movie);
+            if (helperMovies1.contains(movie)) {
+                helperMovies2.add(movie);
+            }
+        }
+
+        return helperMovies1;
     }
 
 

@@ -52,17 +52,18 @@ public class MovieController {
 //    }
 
     @GetMapping({"/criteria"})
-    public ResponseEntity<ArrayList<Movie>> getMovieByAttributes(
+    public ResponseEntity<List<Movie>> getMovieByAttributes(
             @RequestParam(required = false) String title,
             @RequestParam(required = false) Genre genre) {
 
 
-        ArrayList<String> attributes = new ArrayList<>();
-        attributes.add(title);
-        attributes.add(String.valueOf(genre));
+//        Object[] attributes = new String[2];
+//        attributes[0] = title;
+//        attributes[1] = genre.toString();
+
 
         // Movie Movie = MovieService.getMovieById(MovieId);
-        ArrayList<Movie> requestedMovies = MovieService.getMovieByAttributes(attributes);
+        List<Movie> requestedMovies = MovieService.getMovieByAttributes(title, genre);
 
         if (requestedMovies == null) {
             throw new GetEmptyException("There is no Movie present with that ID");
