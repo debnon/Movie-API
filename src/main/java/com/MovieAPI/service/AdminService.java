@@ -1,5 +1,8 @@
 package com.MovieAPI.service;
 
-public interface AdminService {
+import com.MovieAPI.model.User;
 
+public interface AdminService {
+    User getUserById(Long id);
+    User addUser(User user);
 }
