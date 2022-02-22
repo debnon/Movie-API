@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.ZonedDateTime;
 
+
+@Table(name = "movies")
 @Entity
 @Data
 @NoArgsConstructor
@@ -41,4 +43,6 @@ public class Movie {
     // runtime
 
     // director or actors
+
+    //getters and setters https://github.com/eugenp/tutorials/blob/master/persistence-modules/spring-data-jpa-repo/src/main/java/com/baeldung/derivedquery/entity/User.java
 }
