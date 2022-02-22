@@ -56,7 +56,7 @@ public class UserController {
             model.addAttribute("userLogin", existingUser.getEmailID());
             return "My_Account";
         } else {
-            return "Error";
+            return "Incorrect details, please enter valid emailID and password";
         }
     }
 
