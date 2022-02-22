@@ -1,6 +1,7 @@
 package com.MovieAPI.repository;
 
 import com.MovieAPI.model.User;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
