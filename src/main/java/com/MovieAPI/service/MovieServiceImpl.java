@@ -60,34 +60,37 @@ public class MovieServiceImpl implements MovieService  {
     public List<Movie> getMovieByAttributes(String title, Genre genre) {
 
         List<Movie> requestedMovies = new ArrayList<>();
-        if (title != null) {
-
-            requestedMovies = MovieRepository.findByTitle(title);
-            System.out.println("requestedMovies: " + requestedMovies);
-        }
-
-        List<Movie> helperMovies1 = new ArrayList<>();
-        if (genre != null) {
-            helperMovies1 = MovieRepository.findByGenre(genre);
-            System.out.println("helper1: " + helperMovies1);
-        } if (title == null) {
-            requestedMovies = helperMovies1;
-        }
-
-//        else {
-//            helperMovies1 = requestedMovies;
+//        if (title != null) {
+//
+//            requestedMovies = MovieRepository.findByTitle(title);
+//            System.out.println("requestedMovies: " + requestedMovies);
+//        }
+//
+//        List<Movie> helperMovies1 = new ArrayList<>();
+//        if (genre != null) {
+//            helperMovies1 = MovieRepository.findByGenre(genre);
+//            System.out.println("helper1: " + helperMovies1);
+//        } if (title == null) {
+//            requestedMovies = helperMovies1;
+//        }
+//
+////        else {
+////            helperMovies1 = requestedMovies;
+////        }
+//
+//        List<Movie> helperMovies2 = new ArrayList<>();
+//        if (genre != null && title != null) {
+//            for (Movie movie : requestedMovies) {
+//                System.out.println("movie: " + movie);
+//                if (helperMovies1.contains(movie)) {
+//                    helperMovies2.add(movie);
+//                }
+//            }
+//            requestedMovies = helperMovies2;
 //        }
 
-        List<Movie> helperMovies2 = new ArrayList<>();
-        if (genre != null && title != null) {
-            for (Movie movie : requestedMovies) {
-                System.out.println("movie: " + movie);
-                if (helperMovies1.contains(movie)) {
-                    helperMovies2.add(movie);
-                }
-            }
-            requestedMovies = helperMovies2;
-        }
+        //requestedMovies = MovieRepository.findByTitleAndGenre(title, genre);
+        requestedMovies = MovieRepository.findByTitleAndOptionalGenre(title, genre);
 
         return requestedMovies;
     }
