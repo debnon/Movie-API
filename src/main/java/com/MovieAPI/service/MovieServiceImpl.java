@@ -90,7 +90,7 @@ public class MovieServiceImpl implements MovieService  {
 //        }
 
         //requestedMovies = MovieRepository.findByTitleAndGenre(title, genre);
-        requestedMovies = MovieRepository.findByTitleAndOptionalGenre(title, genre);
+
 
         return requestedMovies;
     }

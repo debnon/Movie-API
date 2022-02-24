@@ -54,15 +54,12 @@ public class MovieController {
     @GetMapping({"/criteria"})
     public ResponseEntity<List<Movie>> getMovieByAttributes(
             @RequestParam(required = false) String title,
+            @RequestParam(required = false) String description,
+            @RequestParam(required = false) String releaseDate,
+            @RequestParam(required = false) String rating,
+            @RequestParam(required = false) String originalLanguage,
             @RequestParam(required = false) Genre genre) {
 
-
-//        Object[] attributes = new String[2];
-//        attributes[0] = title;
-//        attributes[1] = genre.toString();
-
-
-        // Movie Movie = MovieService.getMovieById(MovieId);
         List<Movie> requestedMovies = MovieService.getMovieByAttributes(title, genre);
 
         if (requestedMovies == null) {
