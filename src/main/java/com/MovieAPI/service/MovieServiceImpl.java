@@ -78,8 +78,9 @@ public class MovieServiceImpl implements MovieService  {
             movieIntersections.add(titleMovies);
         }
         if (releaseDate != null) {
-            System.out.println("release unsuccessful");
+
             Set<Movie> titleMovies = MovieRepository.findByReleaseDate(releaseDate);
+            System.out.println("release unsuccessful: " + titleMovies);
             movieIntersections.add(titleMovies);
         }
         if (rating != null) {
@@ -100,12 +101,13 @@ public class MovieServiceImpl implements MovieService  {
 
         System.out.println("all ifs completed");
         Set<Movie> previousMovie = movieIntersections.get(0);
-        System.out.println("Previous movie " + previousMovie);
-        System.out.println("Movie Intersections: " + movieIntersections);
+
+
         for (Set<Movie> movieList: movieIntersections) {
-            System.out.println(movieList);
+            System.out.println("Old previous movie " + previousMovie);
             requestedMovies = Sets.intersection(previousMovie, movieList);
-            previousMovie = movieList;
+            System.out.println("Requested movies: " + requestedMovies);
+            previousMovie = requestedMovies;
         }
         System.out.println("all done");
 
