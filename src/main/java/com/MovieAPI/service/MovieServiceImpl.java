@@ -73,28 +73,35 @@ public class MovieServiceImpl implements MovieService  {
             movieIntersections.add(titleMovies);
         }
         if (description != null) {
+            System.out.println("description unsuccessful");
             Set<Movie> titleMovies = MovieRepository.findByDescription(description);
             movieIntersections.add(titleMovies);
         }
         if (releaseDate != null) {
+            System.out.println("release unsuccessful");
             Set<Movie> titleMovies = MovieRepository.findByReleaseDate(releaseDate);
             movieIntersections.add(titleMovies);
         }
         if (rating != null) {
+            System.out.println("rating unsuccessful");
             Set<Movie> titleMovies = MovieRepository.findByRating(rating);
             movieIntersections.add(titleMovies);
         }
         if (originalLanguage != null) {
+            System.out.println("language unsuccessful");
             Set<Movie> titleMovies = MovieRepository.findByOriginalLanguage(originalLanguage);
             movieIntersections.add(titleMovies);
         }
-        if (title != null) {
+        if (genre != null) {
+            System.out.println("genre unsuccessful");
             Set<Movie> titleMovies = MovieRepository.findByGenre(genre);
             movieIntersections.add(titleMovies);
         }
 
         System.out.println("all ifs completed");
         Set<Movie> previousMovie = movieIntersections.get(0);
+        System.out.println("Previous movie " + previousMovie);
+        System.out.println("Movie Intersections: " + movieIntersections);
         for (Set<Movie> movieList: movieIntersections) {
             System.out.println(movieList);
             requestedMovies = Sets.intersection(previousMovie, movieList);
