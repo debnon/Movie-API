@@ -4,11 +4,14 @@ import com.MovieAPI.model.Genre;
 import com.MovieAPI.model.Movie;
 import com.MovieAPI.repository.MovieRepository;
 
+import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class MovieServiceImpl implements MovieService  {
@@ -57,37 +60,59 @@ public class MovieServiceImpl implements MovieService  {
 //    }
 
     @Override
-    public List<Movie> getMovieByAttributes(String title, Genre genre) {
+    public Set<Movie> getMovieByAttributes(String title, String description, String releaseDate,
+                                            String rating, String originalLanguage, Genre genre) {
 
-        List<Movie> requestedMovies = new ArrayList<>();
+        System.out.println("init successful");
+        Set<Movie> requestedMovies = new HashSet<>();
+        ArrayList<Set<Movie>> movieIntersections = new ArrayList<>();
+
         if (title != null) {
-
-            requestedMovies = MovieRepository.findByTitle(title);
-            System.out.println("requestedMovies: " + requestedMovies);
+            System.out.println("title query successful");
+            Set<Movie> titleMovies = MovieRepository.findByTitle(title);
+            movieIntersections.add(titleMovies);
         }
+        if (description != null) {
+            System.out.println("description unsuccessful");
+            Set<Movie> titleMovies = MovieRepository.findByDescription(description);
+            movieIntersections.add(titleMovies);
+        }
+        if (releaseDate != null) {
 
-        List<Movie> helperMovies1 = new ArrayList<>();
+            Set<Movie> titleMovies = MovieRepository.findByReleaseDate(releaseDate);
+            System.out.println("release unsuccessful: " + titleMovies);
+            movieIntersections.add(titleMovies);
+        }
+        if (rating != null) {
+            System.out.println("rating unsuccessful");
+            Set<Movie> titleMovies = MovieRepository.findByRating(rating);
+            movieIntersections.add(titleMovies);
+        }
+        if (originalLanguage != null) {
+            System.out.println("language unsuccessful");
+            Set<Movie> titleMovies = MovieRepository.findByOriginalLanguage(originalLanguage);
+            movieIntersections.add(titleMovies);
+        }
         if (genre != null) {
-            helperMovies1 = MovieRepository.findByGenre(genre);
-            System.out.println("helper1: " + helperMovies1);
-        } if (title == null) {
-            requestedMovies = helperMovies1;
+            System.out.println("genre unsuccessful");
+            Set<Movie> titleMovies = MovieRepository.findByGenre(genre);
+            movieIntersections.add(titleMovies);
         }
 
-//        else {
-//            helperMovies1 = requestedMovies;
-//        }
+        System.out.println("all ifs completed");
+        Set<Movie> previousMovie = movieIntersections.get(0);
 
-        List<Movie> helperMovies2 = new ArrayList<>();
-        if (genre != null && title != null) {
-            for (Movie movie : requestedMovies) {
-                System.out.println("movie: " + movie);
-                if (helperMovies1.contains(movie)) {
-                    helperMovies2.add(movie);
-                }
-            }
-            requestedMovies = helperMovies2;
+
+        for (Set<Movie> movieList: movieIntersections) {
+            System.out.println("Old previous movie " + previousMovie);
+            requestedMovies = Sets.intersection(previousMovie, movieList);
+            System.out.println("Requested movies: " + requestedMovies);
+            previousMovie = requestedMovies;
         }
+        System.out.println("all done");
+
+        //requestedMovies = MovieRepository.findByTitleAndGenre(title, genre);
+
 
         return requestedMovies;
     }
