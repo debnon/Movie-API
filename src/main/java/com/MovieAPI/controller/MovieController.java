@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/movie")
@@ -52,7 +53,7 @@ public class MovieController {
 //    }
 
     @GetMapping({"/criteria"})
-    public ResponseEntity<List<Movie>> getMovieByAttributes(
+    public ResponseEntity<Set<Movie>> getMovieByAttributes(
             @RequestParam(required = false) String title,
             @RequestParam(required = false) String description,
             @RequestParam(required = false) String releaseDate,
@@ -60,7 +61,8 @@ public class MovieController {
             @RequestParam(required = false) String originalLanguage,
             @RequestParam(required = false) Genre genre) {
 
-        List<Movie> requestedMovies = MovieService.getMovieByAttributes(title, genre);
+        Set<Movie> requestedMovies = MovieService.getMovieByAttributes(title, description, releaseDate,
+                                                                        rating, originalLanguage, genre);
 
         if (requestedMovies == null) {
             throw new GetEmptyException("There is no Movie present with that ID");
