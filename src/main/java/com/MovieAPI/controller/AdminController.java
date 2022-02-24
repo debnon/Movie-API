@@ -2,10 +2,8 @@ package com.MovieAPI.controller;
 
 import com.MovieAPI.exception.DuplicateIDException;
 import com.MovieAPI.exception.GetEmptyException;
-import com.MovieAPI.model.Movie;
 import com.MovieAPI.model.User;
 import com.MovieAPI.service.AdminService;
-import com.MovieAPI.service.MovieService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -13,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -57,8 +54,8 @@ public class AdminController {
 
     @PutMapping({"/{id}"})
     public ResponseEntity<User> updateUserById(@PathVariable("id") Long id, @RequestBody User user) {
-        user = adminService.getUserById(id);
-        if (user == null) {
+        User existingUser = adminService.getUserById(id);
+        if (existingUser == null) {
             throw new GetEmptyException("User not found. Please try to update an existing user");
         }
         adminService.updateUserById(id, user);

@@ -1,5 +1,6 @@
 package com.MovieAPI.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,9 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 public class User {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,6 +27,7 @@ public class User {
     String username;
 
     @Column
+    //@JsonIgnore
     String password;
 
     @Column
