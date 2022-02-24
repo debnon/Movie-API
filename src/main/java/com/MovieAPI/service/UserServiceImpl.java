@@ -4,6 +4,8 @@ package com.MovieAPI.service;
 import com.MovieAPI.model.User;
 import com.MovieAPI.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,13 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    PasswordEncoder passwordEncoder;
+
+    public UserServiceImpl (UserRepository userRepository){
+        this.passwordEncoder = new BCryptPasswordEncoder();
+    }
+
 
     @Override
     public User getUserById(Long id) {
@@ -33,16 +42,17 @@ public class UserServiceImpl implements UserService {
         if (emailID == null || password == null) {
             return null;
         } else {
-                if (userRepository.findByEmailID(emailID).isPresent()) {
-                    System.out.println("Duplicate User");
-                    return null;
-                }
+            if (userRepository.findByEmailID(emailID).isPresent()) {
+                System.out.println("Duplicate User");
+                return null;
+            }
             User user = new User();
             user.setUsername(username);
             user.setFirstname(firstname);
             user.setLastname(lastname);
             user.setEmailID(emailID);
-            user.setPassword(password);
+            String encodedPassword = this.passwordEncoder.encode(password);
+            user.setPassword(encodedPassword);
             user.setContactnumber(contactnumber);
             return userRepository.save(user);
         }
