@@ -2,10 +2,8 @@ package com.MovieAPI.controller;
 
 import com.MovieAPI.exception.DuplicateIDException;
 import com.MovieAPI.exception.GetEmptyException;
-import com.MovieAPI.model.Movie;
 import com.MovieAPI.model.User;
 import com.MovieAPI.service.AdminService;
-import com.MovieAPI.service.MovieService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +20,16 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
+    //Controller methods for admin to handle user operations
+
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = adminService.getAllUsers();
+        if (users.isEmpty()) {
+            throw new GetEmptyException("No users present in the database");
+        }
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<User> addUser(@RequestBody User user) {
@@ -43,28 +51,27 @@ public class AdminController {
         }
         return new ResponseEntity(user, HttpStatus.OK);
     }
-//
-//    //User Story 4 - Update Movie By Id Solution
-//    @PutMapping({"/{MovieId}"})
-//    public ResponseEntity<Movie> updateMovieById(@PathVariable("MovieId") Long MovieId, @RequestBody Movie Movie) {
-//        Movie = MovieService.getMovieById(MovieId);
-//        //Return exception message when user is trying to update a Movie that does not exist
-//        if (Movie == null) {
-//            throw new GetEmptyException("Movie not found. Please try to update a Movie that exists.");
-//        }
-//        MovieService.updateMovieById(MovieId, Movie);
-//        return new ResponseEntity<>(MovieService.getMovieById(MovieId), HttpStatus.OK);
-//    }
-//
-//    //delete Movie by id
-//    @DeleteMapping({"/{MovieId}"})
-//    public ResponseEntity<Movie> deleteMovieById(@PathVariable("MovieId") Long MovieId) {
-//        Movie Movie = MovieService.getMovieById(MovieId);
-//        //Return exception message when user is trying to delete a Movie that does not exist
-//        if (Movie == null) {
-//            throw new GetEmptyException("Movie not found. Please try to delete a Movie that exists.");
-//        }
-//        MovieService.deleteMovieById(MovieId);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+
+    @PutMapping({"/{id}"})
+    public ResponseEntity<User> updateUserById(@PathVariable("id") Long id, @RequestBody User user) {
+        User existingUser = adminService.getUserById(id);
+        if (existingUser == null) {
+            throw new GetEmptyException("User not found. Please try to update an existing user");
+        }
+        adminService.updateUserById(id, user);
+        return new ResponseEntity<>(adminService.getUserById(id), HttpStatus.OK);
+    }
+
+    @DeleteMapping({"/{id}"})
+    public ResponseEntity<User> deleteUserById(@PathVariable("id") Long id) {
+        User user = adminService.getUserById(id);
+        if (user == null) {
+            throw new GetEmptyException("User not found. Please try to delete an existing user");
+        }
+        adminService.deleteUserById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    //Controller methods for admin to handle movie operations
+
 }
