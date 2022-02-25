@@ -2,17 +2,13 @@ package com.MovieAPI.controller;
 
 import com.MovieAPI.exception.DuplicateIDException;
 import com.MovieAPI.model.User;
-import com.MovieAPI.service.MovieService;
 import com.MovieAPI.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController

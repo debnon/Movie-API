@@ -1,9 +1,10 @@
 package com.MovieAPI.service;
 
+import com.MovieAPI.model.Genre;
 import com.MovieAPI.model.Movie;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public interface MovieService {
 
@@ -15,7 +16,8 @@ public interface MovieService {
 //
 //    }
 
-//    ArrayList<Movie> getMovieByAttributes(ArrayList<String> attributes);
+    Set<Movie> getMovieByAttributes(String title, String description, String releaseDate,
+                                    String rating, String originalLanguage, Genre genre);
 
     //User Story 4 - Update Movie By Id Solution
     void updateMovieById(Long id, Movie Movie);
