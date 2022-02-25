@@ -19,6 +19,16 @@ public class MovieServiceImpl implements MovieService  {
     @Autowired
     MovieRepository MovieRepository;
 
+    public Iterable<Movie> listed() {
+        return MovieRepository.findAll();
+    }
+
+
+    // do we return this?
+    public Iterable<Movie> save(List<Movie> movies) {
+        return MovieRepository.saveAll(movies);
+    }
+
     @Override
     public List<Movie> getAllMovies() {
         List<Movie> Movies = new ArrayList<>();
@@ -53,11 +63,7 @@ public class MovieServiceImpl implements MovieService  {
         MovieRepository.deleteById(id);
     }
 
-//    @Override
-//    public ArrayList<Movie> getMovieByTitle(String title) {
-//        MovieRepository.findByName("yo");
-//        return MovieRepository.findByTitle(title).isPresent()?MovieRepository.findByTitle(title).get():null;
-//    }
+
 
     @Override
     public Set<Movie> getMovieByAttributes(String title, String description, String releaseDate,
