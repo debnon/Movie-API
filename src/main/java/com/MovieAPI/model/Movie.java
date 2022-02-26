@@ -40,6 +40,9 @@ public class Movie {
     @Column
     Genre genre;
 
+    @Column
+    String poster;
+
     // runtime
 
     // director or actors

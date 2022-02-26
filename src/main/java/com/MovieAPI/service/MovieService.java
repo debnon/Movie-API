@@ -23,6 +23,8 @@ public interface MovieService {
     void updateMovieById(Long id, Movie Movie);
 
     void deleteMovieById(Long id);
+    Iterable<Movie> listed();
+    Iterable<Movie> save(List<Movie> movies);
 }
 
 

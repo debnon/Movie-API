@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,15 @@ public class MovieController {
 
     @Autowired
     MovieService MovieService;
+
+    @Autowired
+    WebClient.Builder webClientBuilder;
+
+    @GetMapping("/update")
+    public ResponseEntity<String> updateMoviesFromAPI() {
+        return new ResponseEntity<>("Movies", HttpStatus.OK);
+    }
+
 
     @GetMapping
     public ResponseEntity<List<Movie>> getAllMovies() {
