@@ -18,9 +18,8 @@ public class UserController {
     @Autowired
     UserService userService;
 
-
     //Registration Request
-    @PostMapping
+    @PostMapping("/registration")
     public ResponseEntity<User> addUser(@RequestBody User user) {
         User existingUser = userService.getUserById(user.getId());
         if (existingUser != null) {
