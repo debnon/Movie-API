@@ -28,6 +28,19 @@ public class MovieController {
 
     @GetMapping("/update")
     public ResponseEntity<String> updateMoviesFromAPI() {
+        String APIKEY = "4b58d2eacb97eb476b09946bd788ea8c";
+
+        // how to use this for a list of movies?
+        // mono is async
+        Movie movie = webClientBuilder.build()
+                .get()
+                .uri("https://api.themoviedb.org/3/discover/movie?" +
+                        "api_key=" + APIKEY +
+                        "&certification_country=US&certification.lte=G&sort_by=popularity.desc&page=1")
+                .retrieve()
+                .bodyToMono(Movie.class)
+                .block();
+
         return new ResponseEntity<>("Movies", HttpStatus.OK);
     }
 
