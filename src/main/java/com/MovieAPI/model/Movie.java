@@ -40,8 +40,16 @@ public class Movie {
     @Column
     Genre genre;
 
-//    @Column
-//    String poster;
+    //additional columns
+
+    @Column
+    String poster;
+
+    @Column
+    Long runtime;
+
+    @Column
+    String releaseStatus;
 
     public Long getId() {
         return id;

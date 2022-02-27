@@ -17,9 +17,32 @@ public class Results {
     private String release_date;
     private float vote_average;
     private Long vote_count;
+    private String poster_path;
+    private Long runtime;
+    private String status;
 
-    public Results() {
+    public String getPoster_path() {
+        return poster_path;
+    }
 
+    public void setPoster_path(String poster_path) {
+        this.poster_path = poster_path;
+    }
+
+    public Long getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(Long runtime) {
+        this.runtime = runtime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public boolean isAdult() {
