@@ -18,14 +18,14 @@ import java.time.ZonedDateTime;
 public class Movie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(updatable = false, nullable = false)
     Long id;
 
     @Column
     String title;
 
-    @Column
+    @Column(length = 1000)
     String description;
 
     @Column
@@ -38,11 +38,13 @@ public class Movie {
     String originalLanguage;
 
     @Column
-    Genre genre;
+    String genre;
 
     @Column
     String poster;
 
+    @Column
+    boolean adult;
     // runtime
 
     // director or actors

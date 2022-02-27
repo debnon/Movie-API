@@ -17,6 +17,7 @@ public class Results {
     private String release_date;
     private float vote_average;
     private Long vote_count;
+    private String poster_path;
 
     public Results() {
 
@@ -102,6 +103,10 @@ public class Results {
         this.overview = overview;
     }
 
+    public String getPoster_path() { return poster_path; }
+
+    public void setPoster_path(String poster_path) { this.poster_path = poster_path; }
+
     @Override
     public String toString() {
         return "Results{" +
@@ -115,6 +120,7 @@ public class Results {
                 ", release_date='" + release_date + '\'' +
                 ", vote_average=" + vote_average +
                 ", vote_count=" + vote_count +
+                ", poster_path=" + poster_path +
                 '}';
     }
 }
