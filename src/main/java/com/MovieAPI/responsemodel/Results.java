@@ -2,6 +2,7 @@ package com.MovieAPI.responsemodel;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,12 +24,15 @@ public class Results {
     private String poster_path;
     private Long runtime;
     private String status;
+    @JsonProperty("imdb_id")
     private String imdb_id;
 
+    @JsonProperty("imdb_id")
     public String getImdbID() {
         return imdb_id;
     }
 
+    @JsonProperty("imdb_id")
     public void setImdbID(String imdb_id) {
         this.imdb_id = imdb_id;
     }
@@ -65,38 +69,15 @@ public class Results {
         this.adult = adult;
     }
 
-//    public void setGenres(long[] genre_ids) {
-//        for (long id : genre_ids) {
-//            System.out.println("Long error!!");
-//            genres.add(Genre.Action.getGenreFromID(id));
-//        }
-//    }
-//
-//    public List<Genre> getGenres() {
-//        return genres;
-//    }
+
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
     }
 
     public List<Genre> getGenres() {
-//        List<Genre> genres = new ArrayList<>();
-//        System.out.println("Results getGenres error!!");
-//        System.out.println(genre_ids);
-//        for (int id : genre_ids) {
-//            System.out.println("Results getGenres error!!");
-//            genres.add(Genre.Action.getGenreFromID(id));
-//        }
+
         return genres;
     }
-
-//    public int[] getGenre_ids() {
-//        return genre_ids;
-//    }
-//
-//    public void setGenre_ids(int[] genre_ids) {
-//        this.genre_ids = genre_ids;
-//    }
 
     public Long getId() {
         return id;

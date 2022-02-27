@@ -31,7 +31,7 @@ public class TMDBApiController {
     String releaseDate;
     String rating;
     String originalLanguage;
-    List<Genre> genres = new ArrayList<>();
+    List<Genre> genres;
     String poster;
     Long runtime;
     String status;
@@ -57,7 +57,7 @@ public class TMDBApiController {
         RestTemplate restTemplate = new RestTemplate();
         for (String id : movieIDs) {
             String url = "https://api.themoviedb.org/3/movie/" + id + "?api_key=" + Constants.TMDB_API_KEY;
-            System.out.println("Long error 0 0 0 ");
+
             Results results = restTemplate.getForObject(url, Results.class);
 
             this.id = results.getId();
@@ -66,17 +66,12 @@ public class TMDBApiController {
             this.releaseDate = results.getRelease_date();
             this.rating = results.getPopularity();
             this.originalLanguage = results.getOriginal_language();
-            System.out.println("Long error 1 1 1 ");
-            // results.setGenres(results.getGenre_ids());
-            System.out.println("Long error 2 2 2 ");
-            System.out.println(results.getGenres());
+
+            genres = new ArrayList<>();
             for (com.MovieAPI.responsemodel.Genre entry : results.getGenres()) {
-                System.out.println(entry);
-                System.out.println(entry.getName());
-                genres.add(Genre.valueOf(entry.getName()));
+                genres.add(Genre.genreMapper.get((entry.getId())));
             }
-            // this.genres =  results.getGenres();
-            System.out.println("Long error 3 3 3 ");
+
             this.poster = results.getPoster_path();
             this.runtime = results.getRuntime();
             this.status = results.getStatus();
