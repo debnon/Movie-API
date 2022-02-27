@@ -22,8 +22,10 @@ public class Results {
     private float vote_average;
     private Long vote_count;
     private String poster_path;
+    private String backdrop_path;
     private Long runtime;
     private String status;
+
     @JsonProperty("imdb_id")
     private String imdb_id;
 
@@ -35,6 +37,14 @@ public class Results {
     @JsonProperty("imdb_id")
     public void setImdbID(String imdb_id) {
         this.imdb_id = imdb_id;
+    }
+
+    public String getBackdrop_path() {
+        return backdrop_path;
+    }
+
+    public void setBackdrop_path(String backdrop_path) {
+        this.backdrop_path = backdrop_path;
     }
 
     public String getPoster_path() {

@@ -46,6 +46,9 @@ public class Movie {
     String poster;
 
     @Column
+    String backdrop;
+
+    @Column
     Long runtime;
 
     @Column

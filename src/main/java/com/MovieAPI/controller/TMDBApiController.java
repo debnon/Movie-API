@@ -33,6 +33,7 @@ public class TMDBApiController {
     String originalLanguage;
     List<Genre> genres;
     String poster;
+    String backdrop;
     Long runtime;
     String status;
     String imdbID;
@@ -73,12 +74,14 @@ public class TMDBApiController {
             }
 
             this.poster = results.getPoster_path();
+            this.backdrop = results.getBackdrop_path();
             this.runtime = results.getRuntime();
             this.status = results.getStatus();
             this.imdbID = results.getImdbID();
 
             Movie movie = new Movie(this.id, this.title, this.description, this.releaseDate, this.rating,
-                    this.originalLanguage, this.genres, this.poster, this.runtime, this.status, this.imdbID);
+                    this.originalLanguage, this.genres, this.poster, this.backdrop, this.runtime, this.status,
+                    this.imdbID);
             movieService.insertMovie(movie);
         }
 
