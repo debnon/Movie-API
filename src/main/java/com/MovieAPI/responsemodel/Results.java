@@ -1,8 +1,10 @@
 package com.MovieAPI.responsemodel;
 
+import com.MovieAPI.model.Genre;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Results {
@@ -20,6 +22,7 @@ public class Results {
     private String poster_path;
     private Long runtime;
     private String status;
+
 
     public String getPoster_path() {
         return poster_path;

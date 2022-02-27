@@ -51,6 +51,8 @@ public class Movie {
     @Column
     String releaseStatus;
 
+    @Column
+
     public Long getId() {
         return id;
     }
