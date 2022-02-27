@@ -60,7 +60,7 @@ public class TMDBApiController {
 
             this.id = results.getId();
             this.title = results.getOriginal_title();
-            this.description = null;
+            this.description = results.getOverview();
             this.releaseDate = results.getRelease_date();
             this.rating = results.getPopularity();
             this.originalLanguage = results.getOriginal_language();

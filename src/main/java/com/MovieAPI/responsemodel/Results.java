@@ -118,6 +118,9 @@ public class Results {
     }
 
     public String getOverview() {
+        if (overview.length() > 255) {
+            return overview.substring(0,251) + "...";
+        }
         return overview;
     }
 
