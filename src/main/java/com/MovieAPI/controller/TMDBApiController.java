@@ -3,8 +3,6 @@ package com.MovieAPI.controller;
 import com.MovieAPI.constants.Constants;
 import com.MovieAPI.model.Genre;
 import com.MovieAPI.model.Movie;
-import com.MovieAPI.responsemodel.Movie2;
-import com.MovieAPI.responsemodel.Movies;
 import com.MovieAPI.responsemodel.Results;
 import com.MovieAPI.service.MovieService;
 import org.json.simple.JSONArray;
@@ -17,12 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 
 @RestController
@@ -69,7 +64,7 @@ public class TMDBApiController {
 
         RestTemplate restTemplate = new RestTemplate();
         for (String id : movieIDs) {
-            String url = "https://api.themoviedb.org/3/movie/" + id + "?api_key=4b58d2eacb97eb476b09946bd788ea8c";
+            String url = "https://api.themoviedb.org/3/movie/" + id + "?api_key=" + Constants.TMDB_API_KEY;
             Results results = restTemplate.getForObject(url, Results.class);
 
             // Results results = new Results();
