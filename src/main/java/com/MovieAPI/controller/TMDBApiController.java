@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/tmdb")
 public class TMDBApiController {
@@ -21,7 +24,7 @@ public class TMDBApiController {
     String releaseDate;
     String rating;
     String originalLanguage;
-    String genre;
+    GenreNew genre;
     String poster;
 
     @Autowired
@@ -48,23 +51,24 @@ public class TMDBApiController {
             this.originalLanguage = movies.getResults()[i].getOriginal_language();
             int genreSize = movies.getResults()[i].getGenre_ids().length;
 
-            StringBuffer sb = new StringBuffer();
+            Movie movie = new Movie();
+            List genreList = new ArrayList();
             for (int k = 0; k <= genreSize - 1; k++) {
                 int genreId = movies.getResults()[i].getGenre_ids()[k];
-                sb.append(GenreNew.getGenreById(genreId) + ",");
+                this.genre = GenreNew.getGenreById(genreId);
+                genreList.add(this.genre);
             }
-            this.genre = sb.toString().toLowerCase();
             this.poster = movies.getResults()[i].getPoster_path();
 
-            Movie movie = new Movie();
             movie.setId(this.id);
             movie.setTitle(this.title);
             movie.setDescription(this.description);
             movie.setReleaseDate(this.releaseDate);
             movie.setRating(this.rating);
             movie.setOriginalLanguage(this.originalLanguage);
-            movie.setGenre(this.genre);
+            movie.setGenre(genreList);
             movie.setPoster(this.poster);
+
             movieService.insertMovie(movie);
         }
         //}

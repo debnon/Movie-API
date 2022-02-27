@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 
 @Table(name = "movies")
@@ -38,7 +39,8 @@ public class Movie {
     String originalLanguage;
 
     @Column
-    String genre;
+    @ElementCollection(targetClass = GenreNew.class)
+    List<GenreNew> genre;
 
     @Column
     String poster;
