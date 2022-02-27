@@ -18,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
@@ -30,14 +31,14 @@ public class TMDBApiController {
     String releaseDate;
     String rating;
     String originalLanguage;
-    Genre genre;
+    List<Genre> genres = new ArrayList<>();
     String poster;
     Long runtime;
     String status;
+    String imdbID;
 
     @Autowired
     MovieService movieService;
-
 
     @GetMapping("/movies")
     public void getMoviesFromTmdb() throws IOException, ParseException {
@@ -56,6 +57,7 @@ public class TMDBApiController {
         RestTemplate restTemplate = new RestTemplate();
         for (String id : movieIDs) {
             String url = "https://api.themoviedb.org/3/movie/" + id + "?api_key=" + Constants.TMDB_API_KEY;
+            System.out.println("Long error 0 0 0 ");
             Results results = restTemplate.getForObject(url, Results.class);
 
             this.id = results.getId();
@@ -64,13 +66,24 @@ public class TMDBApiController {
             this.releaseDate = results.getRelease_date();
             this.rating = results.getPopularity();
             this.originalLanguage = results.getOriginal_language();
-            this.genre = Genre.Education;
+            System.out.println("Long error 1 1 1 ");
+            // results.setGenres(results.getGenre_ids());
+            System.out.println("Long error 2 2 2 ");
+            System.out.println(results.getGenres());
+            for (com.MovieAPI.responsemodel.Genre entry : results.getGenres()) {
+                System.out.println(entry);
+                System.out.println(entry.getName());
+                genres.add(Genre.valueOf(entry.getName()));
+            }
+            // this.genres =  results.getGenres();
+            System.out.println("Long error 3 3 3 ");
             this.poster = results.getPoster_path();
             this.runtime = results.getRuntime();
             this.status = results.getStatus();
+            this.imdbID = results.getImdbID();
 
             Movie movie = new Movie(this.id, this.title, this.description, this.releaseDate, this.rating,
-                    this.originalLanguage, this.genre, this.poster, this.runtime, this.status);
+                    this.originalLanguage, this.genres, this.poster, this.runtime, this.status, this.imdbID);
             movieService.insertMovie(movie);
         }
 

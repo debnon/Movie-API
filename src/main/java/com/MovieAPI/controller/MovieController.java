@@ -54,10 +54,10 @@ public class MovieController {
             @RequestParam(required = false) String releaseDate,
             @RequestParam(required = false) String rating,
             @RequestParam(required = false) String originalLanguage,
-            @RequestParam(required = false) Genre genre) {
+            @RequestParam(required = false) List<Genre> genres) {
 
         Set<Movie> requestedMovies = MovieService.getMovieByAttributes(title, description, releaseDate,
-                                                                        rating, originalLanguage, genre);
+                                                                        rating, originalLanguage/*, genres*/);
 
         if (requestedMovies == null) {
             throw new GetEmptyException("There is no Movie present with that ID");

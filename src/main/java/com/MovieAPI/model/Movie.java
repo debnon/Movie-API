@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 
 @Table(name = "movies")
@@ -38,9 +39,8 @@ public class Movie {
     String originalLanguage;
 
     @Column
-    Genre genre;
-
-    //additional columns
+    @ElementCollection(targetClass=Genre.class)
+    List<Genre> genres;
 
     @Column
     String poster;
@@ -52,6 +52,7 @@ public class Movie {
     String releaseStatus;
 
     @Column
+    String imdbID;
 
     public Long getId() {
         return id;
@@ -101,12 +102,12 @@ public class Movie {
         this.originalLanguage = originalLanguage;
     }
 
-    public Genre getGenre() {
-        return genre;
+    public List<Genre> getGenres() {
+        return genres;
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public void setGenre(List<Genre> genres) {
+        this.genres = genres;
     }
 
     // runtime

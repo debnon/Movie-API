@@ -10,32 +10,39 @@ public enum Genre {
     Mystery(9648L), Romance(10749), SciFi(878L),
     TV(10770), Thriller(53), War(10752L), Western(37);
 
-    private long genreID;
-//    public Genre getGenreFromID(long genreID) {
-//        HashMap<Long, Genre> genreMapper = new HashMap<>();
-//        genreMapper.put(28L, Action);
-//        genreMapper.put(12L, Adventure);
-//        genreMapper.put(16L, Animation);
-//        genreMapper.put(35L, Comedy);
-//        genreMapper.put(80L, Crime);
-//        genreMapper.put(99L, Documentary);
-//        genreMapper.put(18L, Drama);
-//        genreMapper.put(10751L, Family);
-//        genreMapper.put(14L, Fantasy);
-//        genreMapper.put(36L, History);
-//        genreMapper.put(27L, Horror);
-//        genreMapper.put(10402L, Music);
-//        genreMapper.put(9648L, Mystery);
-//        genreMapper.put(10749L, Romance);
-//        genreMapper.put(878L, SciFi);
-//        genreMapper.put(L, );
-//        genreMapper.put(28L, );
-//        genreMapper.put(28L, );
-//        genreMapper.put(28L, );
-//    }
+    private long value;
+    public HashMap<Long, Genre> genreMapper;
 
-    Genre(long genreID) {
-        this.genreID = genreID;
+    Genre(long value) {
+        this.value = value;
+        createGenreIdMapper();;
+    }
+
+    public void createGenreIdMapper() {
+        genreMapper = new HashMap<>();
+        genreMapper.put(28L, Action);
+        genreMapper.put(12L, Adventure);
+        genreMapper.put(16L, Animation);
+        genreMapper.put(35L, Comedy);
+        genreMapper.put(80L, Crime);
+        genreMapper.put(99L, Documentary);
+        genreMapper.put(18L, Drama);
+        genreMapper.put(10751L, Family);
+        genreMapper.put(14L, Fantasy);
+        genreMapper.put(36L, History);
+        genreMapper.put(27L, Horror);
+        genreMapper.put(10402L, Music);
+        genreMapper.put(9648L, Mystery);
+        genreMapper.put(10749L, Romance);
+        genreMapper.put(878L, SciFi);
+        genreMapper.put(10770L, TV);
+        genreMapper.put(53L, Thriller);
+        genreMapper.put(10752L, War);
+        genreMapper.put(37L, Western);
+    }
+
+    public Genre getGenreFromID(long genreID) {
+        return genreMapper.get(genreID);
     }
 }
 

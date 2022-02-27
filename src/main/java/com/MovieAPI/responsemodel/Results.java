@@ -1,16 +1,17 @@
 package com.MovieAPI.responsemodel;
 
-import com.MovieAPI.model.Genre;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Results {
 
     private boolean adult;
-    private int[] genre_ids;
+    private List<Genre> genres;
     private Long id;
     private String original_language;
     private String original_title;
@@ -22,7 +23,15 @@ public class Results {
     private String poster_path;
     private Long runtime;
     private String status;
+    private String imdb_id;
 
+    public String getImdbID() {
+        return imdb_id;
+    }
+
+    public void setImdbID(String imdb_id) {
+        this.imdb_id = imdb_id;
+    }
 
     public String getPoster_path() {
         return poster_path;
@@ -56,13 +65,38 @@ public class Results {
         this.adult = adult;
     }
 
-    public int[] getGenre_ids() {
-        return genre_ids;
+//    public void setGenres(long[] genre_ids) {
+//        for (long id : genre_ids) {
+//            System.out.println("Long error!!");
+//            genres.add(Genre.Action.getGenreFromID(id));
+//        }
+//    }
+//
+//    public List<Genre> getGenres() {
+//        return genres;
+//    }
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 
-    public void setGenre_ids(int[] genre_ids) {
-        this.genre_ids = genre_ids;
+    public List<Genre> getGenres() {
+//        List<Genre> genres = new ArrayList<>();
+//        System.out.println("Results getGenres error!!");
+//        System.out.println(genre_ids);
+//        for (int id : genre_ids) {
+//            System.out.println("Results getGenres error!!");
+//            genres.add(Genre.Action.getGenreFromID(id));
+//        }
+        return genres;
     }
+
+//    public int[] getGenre_ids() {
+//        return genre_ids;
+//    }
+//
+//    public void setGenre_ids(int[] genre_ids) {
+//        this.genre_ids = genre_ids;
+//    }
 
     public Long getId() {
         return id;
@@ -135,7 +169,7 @@ public class Results {
     public String toString() {
         return "Results{" +
                 "adult=" + adult +
-                ", genre_ids=" + Arrays.toString(genre_ids) +
+                ", genre_ids=" + genres +
                 ", id=" + id +
                 ", original_language='" + original_language + '\'' +
                 ", original_title='" + original_title + '\'' +

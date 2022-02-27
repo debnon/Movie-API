@@ -17,7 +17,7 @@ public interface MovieService {
 //    }
 
     Set<Movie> getMovieByAttributes(String title, String description, String releaseDate,
-                                    String rating, String originalLanguage, Genre genre);
+                                    String rating, String originalLanguage/*, List<Genre> genres*/);
 
     //User Story 4 - Update Movie By Id Solution
     void updateMovieById(Long id, Movie Movie);

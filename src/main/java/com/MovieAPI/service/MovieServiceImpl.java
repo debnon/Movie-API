@@ -53,7 +53,7 @@ public class MovieServiceImpl implements MovieService  {
 
         retrievedMovie.setTitle(Movie.getTitle());
         retrievedMovie.setDescription(Movie.getDescription());
-        retrievedMovie.setGenre(Movie.getGenre());
+        retrievedMovie.setGenre(Movie.getGenres());
 
         MovieRepository.save(retrievedMovie);
     }
@@ -67,7 +67,7 @@ public class MovieServiceImpl implements MovieService  {
 
     @Override
     public Set<Movie> getMovieByAttributes(String title, String description, String releaseDate,
-                                            String rating, String originalLanguage, Genre genre) {
+                                            String rating, String originalLanguage/*, List<Genre> genres*/) {
 
         System.out.println("init successful");
         Set<Movie> requestedMovies = new HashSet<>();
@@ -99,11 +99,11 @@ public class MovieServiceImpl implements MovieService  {
             Set<Movie> titleMovies = MovieRepository.findByOriginalLanguage(originalLanguage);
             movieIntersections.add(titleMovies);
         }
-        if (genre != null) {
-            System.out.println("genre unsuccessful");
-            Set<Movie> titleMovies = MovieRepository.findByGenre(genre);
-            movieIntersections.add(titleMovies);
-        }
+//        if (genres != null) {
+//            System.out.println("genre unsuccessful");
+//            Set<Movie> titleMovies = MovieRepository.findByGenreIn(genres);
+//            movieIntersections.add(titleMovies);
+//        }
 
         System.out.println("all ifs completed");
         Set<Movie> previousMovie = movieIntersections.get(0);
