@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 
 @Table(name = "movies")
@@ -18,14 +19,14 @@ import java.time.ZonedDateTime;
 public class Movie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(updatable = false, nullable = false)
     Long id;
 
     @Column
     String title;
 
-    @Column
+    @Column(length = 1000)
     String description;
 
     @Column
@@ -38,11 +39,14 @@ public class Movie {
     String originalLanguage;
 
     @Column
-    Genre genre;
+    @ElementCollection(targetClass = GenreNew.class)
+    List<GenreNew> genre;
 
     @Column
     String poster;
 
+    @Column
+    boolean adult;
     // runtime
 
     // director or actors

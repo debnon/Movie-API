@@ -1,7 +1,7 @@
 package com.MovieAPI.controller;
 
 import com.MovieAPI.constants.Constants;
-import com.MovieAPI.model.Genre;
+import com.MovieAPI.model.GenreNew;
 import com.MovieAPI.model.Movie;
 import com.MovieAPI.responsemodel.Movies;
 import com.MovieAPI.service.MovieService;
@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/tmdb")
@@ -22,7 +24,8 @@ public class TMDBApiController {
     String releaseDate;
     String rating;
     String originalLanguage;
-    Genre genre;
+    GenreNew genre;
+    String poster;
 
     @Autowired
     MovieService movieService;
@@ -36,31 +39,39 @@ public class TMDBApiController {
         RestTemplate restTemplate = new RestTemplate();
 
         Movies movies = restTemplate.getForObject(url, Movies.class);
-        System.out.println(movies.getPage());
+        System.out.println(movies.getTotal_pages());
         System.out.println(movies.getResults().length);
+        // for(int j=1; j<=movies.getTotal_pages();j++) {
         for (int i = 0; i <= movies.getResults().length - 1; i++) {
-            System.out.println(movies.getResults()[i].getId());
-            System.out.println(movies.getResults()[i].getOriginal_title());
-            System.out.println(movies.getResults()[i].getRelease_date());
-            System.out.println(movies.getResults()[i].getPopularity());
-            System.out.println(movies.getResults()[i].getOriginal_language());
-            System.out.println(movies.getResults()[i].getGenre_ids());
-
             this.id = movies.getResults()[i].getId();
             this.title = movies.getResults()[i].getOriginal_title();
-            //this.description = movies.getResults()[i].getOverview();
-            this.description = null;
+            this.description = movies.getResults()[i].getOverview();
             this.releaseDate = movies.getResults()[i].getRelease_date();
-            this.rating = movies.getResults()[i].getPopularity();
+            this.rating = String.valueOf(movies.getResults()[i].getVote_average());
             this.originalLanguage = movies.getResults()[i].getOriginal_language();
-            //movies.getResults()[i].getGenre_ids();
-            this.genre = Genre.Education;
+            int genreSize = movies.getResults()[i].getGenre_ids().length;
 
-            Movie movie = new Movie(this.id, this.title, this.description, this.releaseDate, this.rating,
-                    this.originalLanguage, this.genre);
+            Movie movie = new Movie();
+            List genreList = new ArrayList();
+            for (int k = 0; k <= genreSize - 1; k++) {
+                int genreId = movies.getResults()[i].getGenre_ids()[k];
+                this.genre = GenreNew.getGenreById(genreId);
+                genreList.add(this.genre);
+            }
+            this.poster = movies.getResults()[i].getPoster_path();
+
+            movie.setId(this.id);
+            movie.setTitle(this.title);
+            movie.setDescription(this.description);
+            movie.setReleaseDate(this.releaseDate);
+            movie.setRating(this.rating);
+            movie.setOriginalLanguage(this.originalLanguage);
+            movie.setGenre(genreList);
+            movie.setPoster(this.poster);
+
             movieService.insertMovie(movie);
-
         }
+        //}
         return movies;
     }
 
