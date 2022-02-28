@@ -84,7 +84,5 @@ public class TMDBApiController {
                     this.imdbID);
             movieService.insertMovie(movie);
         }
-
     }
-
 }
