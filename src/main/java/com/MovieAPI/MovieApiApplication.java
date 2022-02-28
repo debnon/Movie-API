@@ -24,27 +24,27 @@ public class MovieApiApplication {
 		SpringApplication.run(MovieApiApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner runner(MovieService movieService) {
-		// read json and write to database (uses Jackson automatically)
-		return args -> {
-			ObjectMapper mapper = new ObjectMapper();
-			TypeReference<List<Movie>> typeReference = new TypeReference<List<Movie>>(){};
-			InputStream inputStream = TypeReference.class.getResourceAsStream("/json/movies.json");
-			try {
-				List<Movie> movies = mapper.readValue(inputStream, typeReference);
-				movieService.save(movies);
-				System.out.println("The movies have been saved");
-			} catch (IOException e) {
-				System.out.println("Unable to save movies: " + e.getMessage());
-			}
-		};
-
-	}
-
-	@Bean
-	public WebClient.Builder getWebClientBuilder() {
-		return WebClient.builder();
-	}
+//	@Bean
+//	CommandLineRunner runner(MovieService movieService) {
+//		// read json and write to database (uses Jackson automatically)
+//		return args -> {
+//			ObjectMapper mapper = new ObjectMapper();
+//			TypeReference<List<Movie>> typeReference = new TypeReference<List<Movie>>(){};
+//			InputStream inputStream = TypeReference.class.getResourceAsStream("/json/movies.json");
+//			try {
+//				List<Movie> movies = mapper.readValue(inputStream, typeReference);
+//				movieService.save(movies);
+//				System.out.println("The movies have been saved");
+//			} catch (IOException e) {
+//				System.out.println("Unable to save movies: " + e.getMessage());
+//			}
+//		};
+//
+//	}
+//
+//	@Bean
+//	public WebClient.Builder getWebClientBuilder() {
+//		return WebClient.builder();
+//	}
 
 }

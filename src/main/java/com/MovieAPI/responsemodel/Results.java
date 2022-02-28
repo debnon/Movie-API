@@ -1,14 +1,18 @@
 package com.MovieAPI.responsemodel;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Results {
 
     private boolean adult;
-    private int[] genre_ids;
+    private List<Genre> genres;
     private Long id;
     private String original_language;
     private String original_title;
@@ -18,9 +22,54 @@ public class Results {
     private float vote_average;
     private Long vote_count;
     private String poster_path;
+    private String backdrop_path;
+    private Long runtime;
+    private String status;
 
-    public Results() {
+    @JsonProperty("imdb_id")
+    private String imdb_id;
 
+    @JsonProperty("imdb_id")
+    public String getImdbID() {
+        return imdb_id;
+    }
+
+    @JsonProperty("imdb_id")
+    public void setImdbID(String imdb_id) {
+        this.imdb_id = imdb_id;
+    }
+
+
+    public String getBackdrop_path() {
+        return backdrop_path;
+    }
+
+    public void setBackdrop_path(String backdrop_path) {
+        this.backdrop_path = backdrop_path;
+    }
+
+    public String getPoster_path() {
+        return poster_path;
+    }
+
+    public void setPoster_path(String poster_path) {
+        this.poster_path = poster_path;
+    }
+
+    public Long getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(Long runtime) {
+        this.runtime = runtime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public boolean isAdult() {
@@ -31,12 +80,14 @@ public class Results {
         this.adult = adult;
     }
 
-    public int[] getGenre_ids() {
-        return genre_ids;
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 
-    public void setGenre_ids(int[] genre_ids) {
-        this.genre_ids = genre_ids;
+    public List<Genre> getGenres() {
+
+        return genres;
     }
 
     public Long getId() {
@@ -96,6 +147,9 @@ public class Results {
     }
 
     public String getOverview() {
+        if (overview.length() > 255) {
+            return overview.substring(0,251) + "...";
+        }
         return overview;
     }
 
@@ -111,7 +165,7 @@ public class Results {
     public String toString() {
         return "Results{" +
                 "adult=" + adult +
-                ", genre_ids=" + Arrays.toString(genre_ids) +
+                ", genre_ids=" + genres +
                 ", id=" + id +
                 ", original_language='" + original_language + '\'' +
                 ", original_title='" + original_title + '\'' +

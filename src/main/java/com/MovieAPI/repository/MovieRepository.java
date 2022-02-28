@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -28,9 +29,9 @@ public interface MovieRepository extends CrudRepository<Movie, Long>, JpaReposit
     Set<Movie> findByReleaseDate(String releaseDate);
     Set<Movie> findByRating(String rating);
     Set<Movie> findByOriginalLanguage(String originalLanguage);
-    Set<Movie> findByGenre(Genre genre);
+    Set<Movie> findByGenresIn(Collection<Genre> genres);
 
-    List<Movie> findByTitleAndGenre(String title, Genre genre);
+
 
 //    @Query("select title from String title where title.genre = :genre and "
 //            + "(:genre is null or title.genre = :genre)")
