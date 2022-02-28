@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api/v1/admin")
 public class AdminController {
 
     @Autowired
@@ -46,7 +46,7 @@ public class AdminController {
         }
         User newUser = adminService.addUser(user);
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("user", "/api/admin" + newUser.getId().toString());
+        httpHeaders.add("user", "/api/v1/admin" + newUser.getId().toString());
         return new ResponseEntity<>(newUser, httpHeaders, HttpStatus.CREATED);
     }
 
@@ -98,7 +98,7 @@ public class AdminController {
         }
         Movie newMovie = movieService.insertMovie(movie);
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("movie", "/api/admin/movie" + newMovie.getId().toString());
+        httpHeaders.add("movie", "/api/v1/admin/movie" + newMovie.getId().toString());
         return new ResponseEntity<>(newMovie, httpHeaders, HttpStatus.CREATED);
     }
 
