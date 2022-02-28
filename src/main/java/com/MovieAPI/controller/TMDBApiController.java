@@ -1,6 +1,7 @@
 package com.MovieAPI.controller;
 
 import com.MovieAPI.constants.Constants;
+import com.MovieAPI.model.Genre;
 import com.MovieAPI.model.GenreNew;
 import com.MovieAPI.model.Movie;
 import com.MovieAPI.responsemodel.Results;

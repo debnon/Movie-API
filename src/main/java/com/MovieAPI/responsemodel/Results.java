@@ -157,9 +157,6 @@ public class Results {
         this.overview = overview;
     }
 
-    public String getPoster_path() { return poster_path; }
-
-    public void setPoster_path(String poster_path) { this.poster_path = poster_path; }
 
     @Override
     public String toString() {
