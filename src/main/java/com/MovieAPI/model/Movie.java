@@ -19,14 +19,14 @@ import java.util.List;
 public class Movie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(updatable = false, nullable = false)
     Long id;
 
     @Column
     String title;
 
-    @Column
+    @Column(length = 1000)
     String description;
 
     @Column
@@ -39,13 +39,16 @@ public class Movie {
     String originalLanguage;
 
     @Column
+
     @ElementCollection(targetClass=Genre.class)
     List<Genre> genres;
+
 
     @Column
     String poster;
 
     @Column
+
     String backdrop;
 
     @Column
@@ -112,6 +115,7 @@ public class Movie {
     public void setGenre(List<Genre> genres) {
         this.genres = genres;
     }
+
 
     // runtime
 

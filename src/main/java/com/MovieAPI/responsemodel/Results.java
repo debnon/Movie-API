@@ -39,6 +39,7 @@ public class Results {
         this.imdb_id = imdb_id;
     }
 
+
     public String getBackdrop_path() {
         return backdrop_path;
     }
@@ -156,6 +157,10 @@ public class Results {
         this.overview = overview;
     }
 
+    public String getPoster_path() { return poster_path; }
+
+    public void setPoster_path(String poster_path) { this.poster_path = poster_path; }
+
     @Override
     public String toString() {
         return "Results{" +
@@ -169,6 +174,7 @@ public class Results {
                 ", release_date='" + release_date + '\'' +
                 ", vote_average=" + vote_average +
                 ", vote_count=" + vote_count +
+                ", poster_path=" + poster_path +
                 '}';
     }
 }

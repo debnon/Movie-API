@@ -1,7 +1,7 @@
 package com.MovieAPI.controller;
 
 import com.MovieAPI.constants.Constants;
-import com.MovieAPI.model.Genre;
+import com.MovieAPI.model.GenreNew;
 import com.MovieAPI.model.Movie;
 import com.MovieAPI.responsemodel.Results;
 import com.MovieAPI.service.MovieService;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,6 +37,7 @@ public class TMDBApiController {
     String status;
     String imdbID;
 
+
     @Autowired
     MovieService movieService;
 
@@ -58,6 +58,7 @@ public class TMDBApiController {
         RestTemplate restTemplate = new RestTemplate();
         for (String id : movieIDs) {
             String url = "https://api.themoviedb.org/3/movie/" + id + "?api_key=" + Constants.TMDB_API_KEY;
+
 
             Results results = restTemplate.getForObject(url, Results.class);
 
