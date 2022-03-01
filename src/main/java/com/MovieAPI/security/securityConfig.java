@@ -1,8 +1,7 @@
 package com.MovieAPI.security;
 
-//import com.MovieAPI.filter.JWTAuthorizationFilter;
+
 import com.MovieAPI.filter.JWTFilter;
-//import com.MovieAPI.filter.customAuthenticationFilter;
 import com.MovieAPI.repository.UserRepository;
 import com.MovieAPI.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
