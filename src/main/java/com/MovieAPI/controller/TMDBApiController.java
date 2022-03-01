@@ -22,7 +22,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/tmdb")
+@RequestMapping("/api/v1/tmdb")
 public class TMDBApiController {
 
     Long id;

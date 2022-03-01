@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/v1/user")
 public class UserController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class UserController {
         User newUser = userService.addUser(user.getUsername(), user.getFirstname(),
                 user.getLastname(), user.getEmailID(), user.getPassword(), user.getContactnumber());
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("user", "/api/user" + newUser.getId().toString());
+        httpHeaders.add("user", "/api/v1/user" + newUser.getId().toString());
         return new ResponseEntity<>(newUser, httpHeaders, HttpStatus.CREATED);
     }
 
