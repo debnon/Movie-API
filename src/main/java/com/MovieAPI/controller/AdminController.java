@@ -8,6 +8,7 @@ import com.MovieAPI.model.User;
 import com.MovieAPI.service.AdminService;
 
 import com.MovieAPI.service.MovieService;
+import com.MovieAPI.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,73 +23,67 @@ import java.util.Set;
 public class AdminController {
 
     @Autowired
-    AdminService adminService;
+    UserService userService;
 
     @Autowired
     MovieService movieService;
 
     //Controller methods for admin to handle user operations
 
+    @PostMapping
+    public ResponseEntity<User> addUser(@RequestBody User user) {
+        User existingUser = userService.getUserById(user.getId());
+        if (existingUser != null) {
+            throw new DuplicateIDException("There is already a User with the given ID.. Please try with another ID");
+        }
+        User newUser = userService.addUser(user.getUsername(), user.getFirstname(), user.getLastname()
+                , user.getEmailID(), user.getPassword(), user.getContactnumber());
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("user", "/api/v1/admin" + newUser.getId().toString());
+        return new ResponseEntity<>(newUser, httpHeaders, HttpStatus.CREATED);
+    }
+
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = adminService.getAllUsers();
+        List<User> users = userService.getAllUsers();
         if (users.isEmpty()) {
             throw new GetEmptyException("No users present in the database");
         }
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<User> addUser(@RequestBody User user) {
-        User existingUser = adminService.getUserById(user.getId());
-        if (existingUser != null) {
-            throw new DuplicateIDException("There is already a User with the given ID.. Please try with another ID");
-        }
-        User newUser = adminService.addUser(user);
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("user", "/api/v1/admin" + newUser.getId().toString());
-        return new ResponseEntity<>(newUser, httpHeaders, HttpStatus.CREATED);
-    }
 
     @GetMapping({"/{id}"})
     public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
-        User user = adminService.getUserById(id);
+        User user = userService.getUserById(id);
         if (user == null) {
             throw new GetEmptyException("No User is present with the given ID");
         }
         return new ResponseEntity(user, HttpStatus.OK);
     }
 
+
     @PutMapping({"/{id}"})
     public ResponseEntity<User> updateUserById(@PathVariable("id") Long id, @RequestBody User user) {
-        User existingUser = adminService.getUserById(id);
+        User existingUser = userService.getUserById(id);
         if (existingUser == null) {
             throw new GetEmptyException("User not found. Please try to update an existing user");
         }
-        adminService.updateUserById(id, user);
-        return new ResponseEntity<>(adminService.getUserById(id), HttpStatus.OK);
+        userService.updateUserById(id, user);
+        return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
     }
 
     @DeleteMapping({"/{id}"})
     public ResponseEntity<User> deleteUserById(@PathVariable("id") Long id) {
-        User user = adminService.getUserById(id);
+        User user = userService.getUserById(id);
         if (user == null) {
             throw new GetEmptyException("User not found. Please try to delete an existing user");
         }
-        adminService.deleteUserById(id);
+        userService.deleteUserById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //Controller methods for admin to handle movie operations
-
-    @GetMapping("/movie")
-    public ResponseEntity<List<Movie>> getAllMovies() {
-        List<Movie> movies = movieService.getAllMovies();
-        if (movies.isEmpty()) {
-            throw new GetEmptyException("No movies present in the database");
-        }
-        return new ResponseEntity<>(movies, HttpStatus.OK);
-    }
 
     @PostMapping("/movie")
     public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
@@ -103,6 +98,15 @@ public class AdminController {
     }
 
 
+    @GetMapping("/movie")
+    public ResponseEntity<List<Movie>> getAllMovies() {
+        List<Movie> movies = movieService.getAllMovies();
+        if (movies.isEmpty()) {
+            throw new GetEmptyException("No movies present in the database");
+        }
+        return new ResponseEntity<>(movies, HttpStatus.OK);
+    }
+
     @GetMapping({"/movie/{id}"})
     public ResponseEntity<Movie> getMovieById(@PathVariable("id") Long id) {
         Movie movie = movieService.getMovieById(id);
@@ -112,27 +116,9 @@ public class AdminController {
         return new ResponseEntity(movie, HttpStatus.OK);
     }
 
-//    @GetMapping({"movie/criteria"})
-//    public ResponseEntity<Set<Movie>> getMovieByAttributes(
-//            @RequestParam(required = false) String title,
-//            @RequestParam(required = false) String description,
-//            @RequestParam(required = false) String releaseDate,
-//            @RequestParam(required = false) String rating,
-//            @RequestParam(required = false) String originalLanguage,
-//            @RequestParam(required = false) List<Genre> genres) {
-//
-//        Set<Movie> requestedMovies = movieService.getMovieByAttributes(title, description, releaseDate,
-//                rating, originalLanguage, genres);
-//
-//        if (requestedMovies == null) {
-//            throw new GetEmptyException("There is no Movie present with that ID");
-//        }
-//        return new ResponseEntity<>(requestedMovies, HttpStatus.OK);
-//    }
-
     @PutMapping({"/movie/{id}"})
     public ResponseEntity<Movie> updateMovieById(@PathVariable("id") Long id, @RequestBody Movie movie) {
-         Movie movie1= movieService.getMovieById(id);
+        Movie movie1 = movieService.getMovieById(id);
         //Return exception message when user is trying to update a Movie that does not exist
         if (movie1 == null) {
             throw new GetEmptyException("Movie not found. Please try to update a Movie that exists.");
