@@ -34,3 +34,4 @@ build/
 
 ### API Keys ###
 **/Constants
+**/application-dev.properties
