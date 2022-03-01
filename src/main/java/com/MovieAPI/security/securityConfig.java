@@ -48,7 +48,7 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeHttpRequests()
                 .antMatchers("/api/user/login2**").permitAll()
-                .antMatchers("/api/user/login2**").hasRole("ROLE_USER")
+                //.antMatchers("/api/user/login2**").hasRole("ROLE_USER")
                 .and()
                 .userDetailsService(userServiceImplDetails)
                 .exceptionHandling()
@@ -67,6 +67,12 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception
+    {
+        auth.userDetailsService(userServiceImplDetails);
     }
 
 
