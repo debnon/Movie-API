@@ -9,6 +9,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl (UserRepository userRepository){
+    public UserServiceImpl(UserRepository userRepository) {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
@@ -28,10 +31,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).isPresent() ? userRepository.findById(id).get() : null;
     }
 
-//    @Override
-//    public User addUser(User user) {
-//        return userRepository.save(user);
-//    }
 
     public User findByEmailIDAndPassword(String emailID, String password) {
         //return userRepository.findByEmailIdAndPassword(emailID, password).isPresent() ? userRepository.findByEmailIdAndPassword(emailID, password).get() : null;
@@ -57,4 +56,32 @@ public class UserServiceImpl implements UserService {
             return userRepository.save(user);
         }
     }
+
+    @Override
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        userRepository.findAll().forEach(users::add);
+        return users;
+    }
+
+    @Override
+    public void updateUserById(Long id, User user) {
+        User existingUser = userRepository.findById(id).get();
+
+        existingUser.setUsername(user.getUsername());
+        String encodedPassword = this.passwordEncoder.encode(user.getPassword());
+        existingUser.setPassword(encodedPassword);
+        existingUser.setFirstname(user.getFirstname());
+        existingUser.setLastname(user.getLastname());
+        existingUser.setEmailID(user.getEmailID());
+        existingUser.setContactnumber(user.getContactnumber());
+
+        userRepository.save(existingUser);
+    }
+
+    @Override
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
+    }
+
 }
