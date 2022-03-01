@@ -28,6 +28,8 @@ import java.io.InputStream;
 import java.util.List;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class, ManagementWebSecurityAutoConfiguration.class})
+
+
 public class MovieApiApplication {
 
 	public static void main(String[] args) {
@@ -76,4 +78,7 @@ public class MovieApiApplication {
 				.build();
 	}
 
+
 }
+
+
