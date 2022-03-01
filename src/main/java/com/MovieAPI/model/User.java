@@ -30,6 +30,10 @@ public class User {
     boolean superUser;
 
     @Column
+    @JsonIgnore
+    String role = "USER";
+
+    @Column
     String username;
 
     @Column
