@@ -47,7 +47,7 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .authorizeHttpRequests()
-                .antMatchers("/api/user/login2**").permitAll()
+                .antMatchers("/api/user/authenticate**").permitAll()
                 //.antMatchers("/api/user/login2**").hasRole("ROLE_USER")
                 .and()
                 .userDetailsService(userServiceImplDetails)
@@ -72,20 +72,11 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception
     {
-        auth.userDetailsService(userServiceImplDetails);
+        auth.userDetailsService(userServiceImplDetails).passwordEncoder(new BCryptPasswordEncoder());
     }
 
 
-    //private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-//    public securityConfig(UserServiceImpl userServiceImplDetails){
-//        this.userServiceImplDetails = userServiceImplDetails;
-//
-//    }
-
-
-
-//
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
 //        http.cors().and().authorizeRequests()
@@ -97,11 +88,7 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
 //                // this disables session creation on Spring Security
 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 //    }
-//
-//    @Override
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userServiceImplDetails).passwordEncoder(new BCryptPasswordEncoder());
-//    }
+
 
 //    @Bean
 //    CorsConfigurationSource corsConfigurationSource() {

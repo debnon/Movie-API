@@ -69,7 +69,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/login2")
+    @PostMapping("/authenticate")
     public Map<String, Object> loginHandler(@RequestBody User user){
         try {
             // Creating the Authentication Token which will contain the credentials for authenticating
