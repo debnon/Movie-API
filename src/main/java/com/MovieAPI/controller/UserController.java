@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 
@@ -86,7 +87,7 @@ public class UserController {
 
             // Respond with the JWT
             return Collections.singletonMap("jwt-token", token);
-        }catch (AuthenticationException authExc){
+        } catch (AuthenticationException authExc){
             // Auhentication Failed
             throw new RuntimeException("Invalid Login Credentials");
         }
