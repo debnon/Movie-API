@@ -17,8 +17,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Table(name="users")
 public class User {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,7 +31,7 @@ public class User {
 
     @Column
     @JsonIgnore
-    String role = "USER";
+    String role = "ROLE_USER";
 
     @Column
     String username;
