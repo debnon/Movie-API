@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './components/dashboard/Dashboard';
 import Preferences from './components/preferences/Preferences';
 import Userlist from './components/userlist/Userlist';
-import Layout from './components/Layout';
+import Layout from './components/layout/Layout';
 import Home from './components/Home';
 
 import './App.css';
