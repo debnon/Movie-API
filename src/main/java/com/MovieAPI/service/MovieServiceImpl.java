@@ -19,6 +19,16 @@ public class MovieServiceImpl implements MovieService  {
     @Autowired
     MovieRepository MovieRepository;
 
+    public Iterable<Movie> listed() {
+        return MovieRepository.findAll();
+    }
+
+
+    // do we return this?
+    public Iterable<Movie> save(List<Movie> movies) {
+        return MovieRepository.saveAll(movies);
+    }
+
     @Override
     public List<Movie> getAllMovies() {
         List<Movie> Movies = new ArrayList<>();
@@ -43,7 +53,7 @@ public class MovieServiceImpl implements MovieService  {
 
         retrievedMovie.setTitle(Movie.getTitle());
         retrievedMovie.setDescription(Movie.getDescription());
-        retrievedMovie.setGenre(Movie.getGenre());
+        retrievedMovie.setGenre(Movie.getGenres());
 
         MovieRepository.save(retrievedMovie);
     }
@@ -53,17 +63,12 @@ public class MovieServiceImpl implements MovieService  {
         MovieRepository.deleteById(id);
     }
 
-//    @Override
-//    public ArrayList<Movie> getMovieByTitle(String title) {
-//        MovieRepository.findByName("yo");
-//        return MovieRepository.findByTitle(title).isPresent()?MovieRepository.findByTitle(title).get():null;
-//    }
+
 
     @Override
     public Set<Movie> getMovieByAttributes(String title, String description, String releaseDate,
-                                            String rating, String originalLanguage, Genre genre) {
+                                           String rating, String originalLanguage, List<Genre> genres) {
 
-        System.out.println("init successful");
         Set<Movie> requestedMovies = new HashSet<>();
         ArrayList<Set<Movie>> movieIntersections = new ArrayList<>();
 
@@ -93,15 +98,14 @@ public class MovieServiceImpl implements MovieService  {
             Set<Movie> titleMovies = MovieRepository.findByOriginalLanguage(originalLanguage);
             movieIntersections.add(titleMovies);
         }
-        if (genre != null) {
+
+        if (genres != null) {
             System.out.println("genre unsuccessful");
-            Set<Movie> titleMovies = MovieRepository.findByGenre(genre);
+            Set<Movie> titleMovies = MovieRepository.findByGenresIn(genres);
             movieIntersections.add(titleMovies);
         }
 
-        System.out.println("all ifs completed");
         Set<Movie> previousMovie = movieIntersections.get(0);
-
 
         for (Set<Movie> movieList: movieIntersections) {
             System.out.println("Old previous movie " + previousMovie);
@@ -112,7 +116,6 @@ public class MovieServiceImpl implements MovieService  {
         System.out.println("all done");
 
         //requestedMovies = MovieRepository.findByTitleAndGenre(title, genre);
-
 
         return requestedMovies;
     }

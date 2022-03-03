@@ -1,6 +1,7 @@
 package com.MovieAPI.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +16,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
 
@@ -25,8 +26,13 @@ public class User {
     Long id;
 
     @Column
+    @JsonIgnore
     boolean superUser;
 
+
+    @Column
+    @JsonIgnore
+    String role = "USER";
 
     @Column
     String username;
