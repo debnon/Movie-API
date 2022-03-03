@@ -38,17 +38,13 @@ public class Movie {
     @Column
     String originalLanguage;
 
-    @Column
-
     @ElementCollection(targetClass=Genre.class)
     List<Genre> genres;
-
 
     @Column
     String poster;
 
     @Column
-
     String backdrop;
 
     @Column
