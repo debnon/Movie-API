@@ -30,10 +30,16 @@ export default function Login({ setToken }) {
     const handleSubmit = async e => {
         e.preventDefault();
         const token = await loginUser({
-            username,
-            password
+            "emailID": username,
+            "password": password
         });
-        setToken(token);
+        console.log(token);
+        if (token["jwt-token"]) {
+            setToken(token);
+        } else {
+            console.log("Invalid login");
+        }
+        
     }
 
     return(
