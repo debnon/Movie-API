@@ -3,35 +3,6 @@ import { Button } from './Button';
 import { Outlet, Link } from "react-router-dom";
 import './Layout.css';
 
-
-
-// const Layout = () => {
-//   return (
-//     <>
-//       <nav>
-//         <ul>
-//           <li>
-//             <Link to="/">Home</Link>
-//           </li>
-//           <li>
-//             <Link to="/dashboard">Dashboard</Link>
-//           </li>
-//           <li>
-//             <Link to="/preferences">Preferences</Link>
-//           </li>
-//           <li>
-//             <Link to="/userlist">Userlist</Link>
-//           </li>
-//         </ul>
-//       </nav>
-
-//       <Outlet />
-//     </>
-//   )
-// };
-
-// export default Layout;
-
 function Layout() {
 const [click, setClick] = useState(false);
 const [button, setButton] = useState(true);
