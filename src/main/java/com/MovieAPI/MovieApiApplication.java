@@ -1,11 +1,10 @@
 package com.MovieAPI;
-// using jackson TypeReference
+
 import com.MovieAPI.controller.AdminController;
 import com.MovieAPI.model.Movie;
 import com.MovieAPI.service.MovieService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-//import org.springframework.asm.TypeReference;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import org.springdoc.core.GroupedOpenApi;
@@ -19,6 +18,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
+
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class, ManagementWebSecurityAutoConfiguration.class})
 public class MovieApiApplication {
@@ -51,6 +51,7 @@ public class MovieApiApplication {
 				.description("Need to know details about movies..? Here is the API for you...!!!")
 				.version("1.0"));
 	}
+
 }
 
 

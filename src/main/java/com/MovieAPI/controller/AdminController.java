@@ -22,6 +22,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/admin")
+@CrossOrigin("*")
 public class AdminController {
 
     @Autowired
