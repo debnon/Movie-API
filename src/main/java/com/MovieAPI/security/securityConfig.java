@@ -1,8 +1,7 @@
 package com.MovieAPI.security;
 
-//import com.MovieAPI.filter.JWTAuthorizationFilter;
+
 import com.MovieAPI.filter.JWTFilter;
-//import com.MovieAPI.filter.customAuthenticationFilter;
 import com.MovieAPI.repository.UserRepository;
 import com.MovieAPI.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.servlet.http.HttpServletResponse;
 
-//import static com.MovieAPI.filter.SecurityConstants.SIGN_UP_URL;
 
 @Configuration
 @EnableWebSecurity
@@ -48,7 +46,7 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeHttpRequests()
                 .antMatchers("/api/user/authenticate**").permitAll()
-                //.antMatchers("/api/user/login2**").hasRole("ROLE_USER")
+                //.antMatchers("/api/auth**").hasRole("ROLE_USER")
                 .and()
                 .userDetailsService(userServiceImplDetails)
                 .exceptionHandling()
@@ -72,7 +70,7 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception
     {
-        auth.userDetailsService(userServiceImplDetails).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userServiceImplDetails);
     }
 
 

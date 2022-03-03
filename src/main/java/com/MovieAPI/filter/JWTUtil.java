@@ -22,7 +22,7 @@ public class JWTUtil {
         return JWT.create()
                 .withSubject("User Details")
                 .withClaim("email", emailID)
-                .withIssuedAt(new Date())
+                .withIssuedAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000)) //10mins
                 .withIssuer("/api/user/authenticate")
                 .sign(Algorithm.HMAC256(secret));
     }

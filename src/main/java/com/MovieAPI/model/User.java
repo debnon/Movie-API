@@ -27,6 +27,7 @@ public class User {
     @Column
     boolean superUser;
 
+
     @Column
     String username;
 
