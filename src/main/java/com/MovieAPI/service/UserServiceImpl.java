@@ -41,7 +41,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 user.getEmailID(),
                 user.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")));
+                Collections.singletonList(new SimpleGrantedAuthority(user.getRole())));
+               // Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")));
     }
 
     @Override

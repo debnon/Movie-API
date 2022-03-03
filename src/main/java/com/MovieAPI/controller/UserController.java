@@ -1,6 +1,8 @@
 package com.MovieAPI.controller;
 
+import com.MovieAPI.exception.CustomException;
 import com.MovieAPI.exception.DuplicateIDException;
+import com.MovieAPI.exception.GetEmptyException;
 import com.MovieAPI.filter.JWTUtil;
 import com.MovieAPI.model.User;
 import com.MovieAPI.repository.UserRepository;
@@ -11,11 +13,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+import java.time.ZonedDateTime;
 import java.util.Collections;
 import java.util.Map;
 
@@ -70,7 +75,7 @@ public class UserController {
     }
 
     @PostMapping("/authenticate")
-    public Map<String, Object> loginHandler(@RequestBody User user){
+    public Map<String, Object> loginHandler(@RequestBody User user) {
         try {
             // Creating the Authentication Token which will contain the credentials for authenticating
             // This token is used as input to the authentication process
