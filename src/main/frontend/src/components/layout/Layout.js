@@ -72,20 +72,20 @@ return (
             </li>
             <li className='nav-item'>
             <Link
-                to='/services'
+                to='/dashboard'
                 className='nav-links'
                 onClick={closeMobileMenu}
             >
-                Services
+                Dashboard
             </Link>
             </li>
             <li className='nav-item'>
             <Link
-                to='/products'
+                to='/userlist'
                 className='nav-links'
                 onClick={closeMobileMenu}
             >
-                Products
+                Userlist
             </Link>
             </li>
 
@@ -100,8 +100,10 @@ return (
             </li>
         </ul>
         {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
+        {/* {button && <Button buttonStyle='btn--outline'>REGISTER</Button>} */}
         </div>
     </nav>
+    <Outlet />
     </>
 );
 }
