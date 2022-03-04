@@ -20,7 +20,6 @@ import javax.persistence.*;
 @Table(name="users")
 public class User {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(updatable = false, nullable = false)
@@ -33,7 +32,7 @@ public class User {
 
     @Column
     @JsonIgnore
-    String role = "USER";
+    String role = "ROLE_USER";
 
     @Column
     String username;

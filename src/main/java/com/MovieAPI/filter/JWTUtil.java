@@ -22,17 +22,17 @@ public class JWTUtil {
         return JWT.create()
                 .withSubject("User Details")
                 .withClaim("email", emailID)
-                .withIssuedAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000)) //10mins
-                .withIssuer("/api/user/authenticate")
+                .withIssuedAt(new Date())
+                .withIssuer("/api/v1/user/authenticate")
                 .sign(Algorithm.HMAC256(secret));
     }
 
     public String validateTokenAndRetrieveSubject(String token)throws JWTVerificationException {
         JWTVerifier verifier = JWT.require(Algorithm.HMAC256(secret))
                 .withSubject("User Details")
-                .withIssuer("/api/user/authenticate")
+                .withIssuer("/api/v1/user/authenticate")
                 .build();
         DecodedJWT jwt = verifier.verify(token);
-        return jwt.getClaim("emailID").asString();
+        return jwt.getClaim("email").asString();
     }
 }

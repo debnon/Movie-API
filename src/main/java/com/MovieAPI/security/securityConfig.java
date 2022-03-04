@@ -7,6 +7,7 @@ import com.MovieAPI.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.BeanDefinitionDsl;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -23,6 +24,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.servlet.http.HttpServletResponse;
 
+//import static com.MovieAPI.filter.SecurityConstants.SIGN_UP_URL;
 
 @Configuration
 @EnableWebSecurity
@@ -45,8 +47,13 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .authorizeHttpRequests()
-                .antMatchers("/api/user/authenticate**").permitAll()
-                //.antMatchers("/api/auth**").hasRole("ROLE_USER")
+                .antMatchers("/api/v1/user/authenticate/**").permitAll()
+                .antMatchers("/api/v1/user/registration/**").permitAll()
+                //.antMatchers("/api/v1/user/**").hasAnyRole("ROLE_USER", "ROLE_ADMIN")
+                //.antMatchers("/api/v1/movie/**").hasAnyRole("ROLE_USER", "ROLE_ADMIN")
+                //.antMatchers("/api/v1/tmdb/**").hasAnyRole("ROLE_USER", "ROLE_ADMIN")
+                //.antMatchers("/api/v1/admin/**").hasRole("ROLE_ADMIN")
+               //.anyRequest().authenticated()
                 .and()
                 .userDetailsService(userServiceImplDetails)
                 .exceptionHandling()
@@ -70,7 +77,7 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception
     {
-        auth.userDetailsService(userServiceImplDetails);
+        auth.userDetailsService(userServiceImplDetails).passwordEncoder(new BCryptPasswordEncoder());
     }
 
 

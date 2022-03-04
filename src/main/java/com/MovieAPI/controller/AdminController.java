@@ -13,13 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/admin")
+@CrossOrigin("*")
 public class AdminController {
 
     @Autowired
@@ -30,7 +33,7 @@ public class AdminController {
 
     //Controller methods for admin to handle user operations
 
-    @PostMapping
+    @PostMapping("/user")
     public ResponseEntity<User> addUser(@RequestBody User user) {
         User existingUser = userService.getUserById(user.getId());
         if (existingUser != null) {
@@ -43,7 +46,7 @@ public class AdminController {
         return new ResponseEntity<>(newUser, httpHeaders, HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/user")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         if (users.isEmpty()) {
@@ -53,7 +56,7 @@ public class AdminController {
     }
 
 
-    @GetMapping({"/{id}"})
+    @GetMapping({"/user/{id}"})
     public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
         User user = userService.getUserById(id);
         if (user == null) {
@@ -63,7 +66,7 @@ public class AdminController {
     }
 
 
-    @PutMapping({"/{id}"})
+    @PutMapping({"/user/{id}"})
     public ResponseEntity<User> updateUserById(@PathVariable("id") Long id, @RequestBody User user) {
         User existingUser = userService.getUserById(id);
         if (existingUser == null) {
@@ -73,7 +76,7 @@ public class AdminController {
         return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
     }
 
-    @DeleteMapping({"/{id}"})
+    @DeleteMapping({"/user/{id}"})
     public ResponseEntity<User> deleteUserById(@PathVariable("id") Long id) {
         User user = userService.getUserById(id);
         if (user == null) {
