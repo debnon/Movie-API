@@ -1,5 +1,6 @@
 package com.MovieAPI.controller;
 
+import com.MovieAPI.model.Roles;
 import com.MovieAPI.model.User;
 import com.MovieAPI.service.AdminServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,8 +17,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static org.mockito.Mockito.*;
 
@@ -45,10 +45,12 @@ public class AdminControllerTests {
     @Test
     public void testGetMappingGetAllUsers() throws Exception {
         //Arrange
+        Set roles = new HashSet<>();
+        roles.add("ROLE_USER");
         List<User> users = new ArrayList<>();
-        users.add(new User(1L, false, "USER", "user1", "user1123", "user1", "1", "user1@gmail.com", "0748956121"));
-        users.add(new User(2L, true, "USER", "user2", "user2123", "user2", "12", "user2@gmail.com", "0748956122"));
-        users.add(new User(3L, false, "USER", "user3", "user3123", "user3", "123", "user3@gmail.com", "0748956123"));
+        users.add(new User(1L, false, Roles.ROLE_USER, "user1", "user1123", "user1", "1", "user1@gmail.com", "0748956121"));
+        users.add(new User(2L, true, Roles.ROLE_USER, "user2", "user2123", "user2", "12", "user2@gmail.com", "0748956122"));
+        users.add(new User(3L, false, Roles.ROLE_USER, "user3", "user3123", "user3", "123", "user3@gmail.com", "0748956123"));
 
         //Act and Assert
         when(mockAdminServiceImpl.getAllUsers()).thenReturn(users);
@@ -67,7 +69,9 @@ public class AdminControllerTests {
     @Test
     public void testPostMappingAddUser() throws Exception {
         //Arrange
-        User user = new User(4L, true, "USER","user4", "user4123", "user4", "1234", "user4@gmail.com", "0748956124");
+        Set roles = new HashSet<>();
+        roles.add("ROLE_USER");
+        User user = new User(4L, true, Roles.ROLE_USER,"user4", "user4123", "user4", "1234", "user4@gmail.com", "0748956124");
 
         //Act
         when(mockAdminServiceImpl.addUser(user)).thenReturn(user);
@@ -86,7 +90,9 @@ public class AdminControllerTests {
     @Test
     public void testGetMappingGetUserById() throws Exception {
         //Arrange
-        User user = new User(4L, true, "USER", "user4", "user4123", "user4", "1234", "user4@gmail.com", "0748956124");
+        Set roles = new HashSet<>();
+        roles.add("ROLE_USER");
+        User user = new User(4L, true, Roles.ROLE_USER, "user4", "user4123", "user4", "1234", "user4@gmail.com", "0748956124");
 
         //Act and Assert
         when(mockAdminServiceImpl.getUserById(user.getId())).thenReturn(user);
@@ -101,7 +107,9 @@ public class AdminControllerTests {
     @Test
     public void testPutMappingUpdateAUser() throws Exception {
         //Arrange
-        User user = new User(4L, true, "USER", "user4", "user4123", "user4", "1234", "user4@gmail.com", "0748956124");
+        Set roles = new HashSet<>();
+        roles.add("ROLE_USER");
+        User user = new User(4L, true, Roles.ROLE_USER, "user4", "user4123", "user4", "1234", "user4@gmail.com", "0748956124");
 
         //Act
         when(mockAdminServiceImpl.getUserById(user.getId())).thenReturn(user);
@@ -120,7 +128,9 @@ public class AdminControllerTests {
     @Test
     public void testDeleteMappingDeleteAUser() throws Exception {
         //Arrange
-        User user = new User(1L, false, "user1", "USER","user1123", "user1", "1", "user1@gmail.com", "0748956121");
+        Set roles = new HashSet<>();
+        roles.add("ROLE_USER");
+        User user = new User(1L, false, Roles.ROLE_USER, "USER","user1123", "user1", "1", "user1@gmail.com", "0748956121");
 
         //Act
         when(mockAdminServiceImpl.getUserById(user.getId())).thenReturn(user);

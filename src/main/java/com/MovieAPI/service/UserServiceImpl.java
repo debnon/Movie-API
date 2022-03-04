@@ -4,6 +4,7 @@ package com.MovieAPI.service;
 import com.MovieAPI.model.User;
 import com.MovieAPI.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,10 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.*;
 
 
 @Component
@@ -40,9 +39,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 user.getEmailID(),
                 user.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority(user.getRole())));
+                Collections.singletonList(new SimpleGrantedAuthority(user.getRoles().toString())));
                // Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")));
     }
+
 
     @Override
     public User getUserById(Long id) {
