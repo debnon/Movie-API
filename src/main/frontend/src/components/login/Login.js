@@ -33,7 +33,7 @@ export default function Login({ setToken }) {
             "emailID": username,
             "password": password
         });
-        console.log(token);
+        
         if (token["jwt-token"]) {
             setToken(token);
         } else {
