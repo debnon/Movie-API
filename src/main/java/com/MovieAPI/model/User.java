@@ -17,6 +17,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Table(name="users")
 public class User {
 
 
