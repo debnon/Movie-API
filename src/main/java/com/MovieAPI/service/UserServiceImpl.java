@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 
-@Component
+//@Component
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
@@ -33,14 +33,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String emailID) throws UsernameNotFoundException {
         Optional<User> userRes = userRepository.findByEmailID(emailID);
-        if(userRes.isEmpty())
+        if (userRes.isEmpty())
             throw new UsernameNotFoundException("Could not findUser with emailID = " + emailID);
         User user = userRes.get();
         return new org.springframework.security.core.userdetails.User(
                 user.getEmailID(),
                 user.getPassword(),
                 Collections.singletonList(new SimpleGrantedAuthority(user.getRoles().toString())));
-               // Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")));
+        // Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")));
     }
 
 

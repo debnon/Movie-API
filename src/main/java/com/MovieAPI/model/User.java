@@ -19,7 +19,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Table(name="users")
+@Table(name = "users")
 public class User {
 
     @Id
