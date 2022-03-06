@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import logo from '../../graphics/logo2.png';
 import Register from './Register';
-
-
+import Blocker from './Blocker';
+import Popup from './Popup';
 
 import './Login.css';
 // import './Register.css';
@@ -48,17 +48,26 @@ export default function Login({ setToken }) {
         
     }
 
-    const [isShowRegister, setIsShowRegister] = useState(true);
+    // const [isShowRegister, setIsShowRegister] = useState(true);
 
-    const handleRegisterClick = () => {
-        setIsShowRegister((isShowRegister) => !isShowRegister);
-    };
+    // const handleRegisterClick = () => {
+    //     setIsShowRegister((isShowRegister) => !isShowRegister);
+    //     console.log(isShowRegister);
+    // };
+
+    const popup = document.querySelector('.popup');
+    console.log("yo"); 
+    const showPopup = () => {
+        console.log("yo");  
+         popup.classList.add('open');
+    }
+    const hidePopup = () => {
+        console.log("no");    
+        popup.classList.remove('open');
+    }
 
     return (
         <div>
-            {/* <NavBar handleRegisterClick={handleRegisterClick} /> */}
-                
-    
     <div class="h1">
     <img src={logo} alt="M logo" />
     <h1 class="h">movie maverick</h1>
@@ -72,11 +81,20 @@ export default function Login({ setToken }) {
             <a href="" class="link">Forgotten Password?</a>
             </div>
             <div class="ca">
-                <a onClick={handleRegisterClick} class="pca">Create New Account</a>
+                {/* <a onClick={handleRegisterClick} class="pca">Create New Account</a> */}
+                <a class="pca" onClick={showPopup}>Create New Account</a>
                 
             </div>
             </form>
-            <Register isShowRegister={isShowRegister} />
+            <>
+      <div class="popup">
+        <div class="blocker" onClick={hidePopup}></div>
+        <div class="contents">
+          This is popup
+        </div>
+      </div>
+      </>
+            
     </div>
     )
 }
