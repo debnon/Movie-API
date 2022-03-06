@@ -39,6 +39,9 @@ public class UserControllerTests {
     private ObjectMapper mapper;
 
     @Mock
+    AuthenticationManager authenticationManager;
+
+    @Mock
     JWTUtil jwtUtil;
 
     @BeforeEach
