@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import logo from '../../graphics/logo2.png';
 import Register from './Register';
-import Blocker from './Blocker';
-import Popup from './Popup';
+// import Blocker from './Blocker';
+// import Popup from './Popup';
 
 import './Login.css';
 // import './Register.css';
+
+
+// can remove popup
 
 // const fetchUserToken =  () => {
 //     axios.post("http://localhost:8080/api/v1/user/authenticate").then(res => {
@@ -89,9 +92,10 @@ export default function Login({ setToken }) {
             <>
       <div class="popup">
         <div class="blocker" onClick={hidePopup}></div>
-        <div class="contents">
+        <Register/>
+        {/* <div class="contents">
           This is popup
-        </div>
+        </div> */}
       </div>
       </>
             

@@ -1,10 +1,10 @@
 
   
-
+/* 
 body {
     background: yellow;
     text-align: center;
-}
+} */
 .popup { display: none; }
 .popup.open { display: block; }
 
