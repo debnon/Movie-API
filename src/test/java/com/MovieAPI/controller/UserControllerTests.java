@@ -4,7 +4,6 @@ import com.MovieAPI.filter.JWTUtil;
 import com.MovieAPI.model.Roles;
 import com.MovieAPI.model.User;
 import com.MovieAPI.service.UserServiceImpl;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
