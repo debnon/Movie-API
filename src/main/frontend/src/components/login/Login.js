@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import logo from '../../graphics/logo2.png';
+import Register from './Register';
+
 
 
 import './Login.css';
+// import './Register.css';
 
 // const fetchUserToken =  () => {
 //     axios.post("http://localhost:8080/api/v1/user/authenticate").then(res => {
@@ -23,11 +26,10 @@ async function loginUser(credentials) {
         .then(data => data.json())
 }
 
-
-
-
 export default function Login({ setToken }) {
 
+    // handle post request with email/username and password
+    // return and save JWT
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
 
@@ -46,33 +48,16 @@ export default function Login({ setToken }) {
         
     }
 
-    
-    // return(
-    // <div className="login-wrapper">
-    //     <h1>Please Log In</h1>
-    //     <form onSubmit={handleSubmit}>
-    //     <label>
-    //         <p>Username</p>
-    //         <input type="text" onChange={e => setUserName(e.target.value)}/>
-    //     </label>
-    //     <label>
-    //         <p>Password</p>
-    //         <input type="password" onChange={e => setPassword(e.target.value)}/>
-    //     </label>
-    //     <div>
-    //         <button type="submit">Submit</button>
-    //     </div>
-    //     </form>
-        
-            
-        
-    // </div>
+    const [isShowRegister, setIsShowRegister] = useState(true);
 
-    
-    // )
+    const handleRegisterClick = () => {
+        setIsShowRegister((isShowRegister) => !isShowRegister);
+    };
 
     return (
         <div>
+            {/* <NavBar handleRegisterClick={handleRegisterClick} /> */}
+                
     
     <div class="h1">
     <img src={logo} alt="M logo" />
@@ -87,9 +72,11 @@ export default function Login({ setToken }) {
             <a href="" class="link">Forgotten Password?</a>
             </div>
             <div class="ca">
-                <a href="" class="pca">Create New Account</a>
+                <a onClick={handleRegisterClick} class="pca">Create New Account</a>
+                
             </div>
             </form>
+            <Register isShowRegister={isShowRegister} />
     </div>
     )
 }

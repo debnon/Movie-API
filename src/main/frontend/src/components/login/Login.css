@@ -57,17 +57,23 @@
                 -1px -1px 1px #f21818;
 }
 .login-btn{
-   
+    cursor: pointer;
     margin: 10px ;
     padding: 15px;
     width: 95%;
     border-radius: 5px;
-    /* background-color: #1877f2; */
     background-color: #f21818;
     color: #ffff;
     font-size: 20px;
     border: none;
     font-weight: bolder;
+    transition: 170ms;
+}
+
+.login-btn:hover{
+    transform: scale(1.007);
+    background-color: #e71010;
+    transition: 130ms;
 }
 .a-link{
     text-align: center;
