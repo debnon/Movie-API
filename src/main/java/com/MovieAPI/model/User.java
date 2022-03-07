@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -17,7 +19,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Table(name="users")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -26,13 +28,11 @@ public class User {
     Long id;
 
     @Column
-    @JsonIgnore
     boolean superUser;
 
 
     @Column
-    @JsonIgnore
-    String role = "ROLE_USER";
+    Roles roles = Roles.ROLE_USER;
 
     @Column
     String username;

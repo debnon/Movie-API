@@ -39,10 +39,9 @@ public class AdminController {
         if (existingUser != null) {
             throw new DuplicateIDException("There is already a User with the given ID.. Please try with another ID");
         }
-        User newUser = userService.addUser(user.getUsername(), user.getFirstname(), user.getLastname()
-                , user.getEmailID(), user.getPassword(), user.getContactnumber());
+        User newUser = userService.addUser(user.getUsername(), user.getFirstname(), user.getLastname(), user.getEmailID(), user.getPassword(), user.getContactnumber());
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("user", "/api/v1/admin" + newUser.getId().toString());
+        httpHeaders.add("user", "/api/v1/admin"+newUser.getId().toString());
         return new ResponseEntity<>(newUser, httpHeaders, HttpStatus.CREATED);
     }
 
