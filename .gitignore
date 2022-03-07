@@ -33,7 +33,8 @@ build/
 .vscode/
 
 ### API Keys ###
-**/Constants
+
+**/resources
 **/application-dev.properties
 **/application-test.properties
 **/application-prod.properties
