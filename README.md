@@ -86,10 +86,14 @@ You need to have the following softwares installed on your machine.
 
    Step 3: 
 
-   When you see postgres=# in the command prompt then use below commands to create a user and a database as follows: 
+   When you see postgres=# in the command prompt then use below commands to create a user and a database as follows:
+
    _create user springuser with password 'password';_
-   _grant usage, select on all sequences in schema public to springuser;
-   grant select,update,insert,delete on table users,movies to springuser;_
+
+   _grant usage, select on all sequences in schema public to springuser;_
+
+   _grant select,update,insert,delete on table users,movies to springuser;_
+
    _create database movies;_ 
 
 2. Once the database is ready navigate to MovieApiApplication.java and run the application as Springboot application. 
