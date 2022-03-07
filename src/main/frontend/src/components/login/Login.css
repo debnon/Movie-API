@@ -140,7 +140,10 @@
 
     }
 
-.popup { display: none; }
+.popup { 
+    
+    display: none; 
+}
 .popup.open { display: block; }
 
 .blocker {
@@ -151,6 +154,10 @@
     right: 0;
     content: ' ';
     background: rgba(0,0,0,.5);
+    
+    /* background-image: linear-gradient(red, green); */
+    animation: expand 0.5s  ease-out forwards;
+    background-image: linear-gradient( rgba(255,0,0,0), rgba(0,0,0,.5));
 }
 /* .popup .contents {
     border: 1px solid #ccc;
