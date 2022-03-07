@@ -46,6 +46,7 @@ An external API called Twilio API is used to send an sms notification to the reg
 the application.
 
 ## Output
+
 After starting the application the home screen where user can register should look like below: 
 
 Registration Screen 
@@ -58,6 +59,46 @@ http://localhost:8080/swagger-ui/index.html
 
 ## Instructions to run 
 
+To run this project you need to fork the repository to your git account and clone it to your machine. 
+
+#### Pre-Requisites: 
+
+You need to have the following softwares installed on your machine.
+1. Java (above version 8) 
+2. Eclipse/Intellij IDE for Java/Sprigboot 
+3. Visual Studio Code for React 
+4. Postgres SQL
+
+#### Steps to run the project: 
+
+1. Set up postgres database on your machine by following the steps below:
+
+   Step 1: 
+
+   Start the postgres server using the following command
+   _pg_ctl -D "<<path to postgres>>" start_
+
+   Step 2: 
+
+   Use below command to go to postgres SQL Editor in command prompt 
+   _psql -U postgres -h localhost -W_ 
+   At this stage you will be asked to enter password that you have created while installing the postgres.
+
+   Step 3: 
+
+   When you see postgres=# in the command prompt then use below commands to create a user and a database as follows: 
+   _create user springuser with password 'password';_
+   _grant usage, select on all sequences in schema public to springuser;
+   grant select,update,insert,delete on table users,movies to springuser;_
+   _create database movies;_ 
+
+2. Once the database is ready navigate to MovieApiApplication.java and run the application as Springboot application. 
+   You should see that the application run as a springboot application on embedded tomcat server and you will be able to 
+   access all the endpoints for user,movies and admin based on the roles.
+
+3. To run application tests go to the terminal and use below command
+   mvn test
+   You should be able to see all the tests running successfully.
 
 ## Future Improvements 
 
