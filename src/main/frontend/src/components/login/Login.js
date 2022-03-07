@@ -26,6 +26,18 @@ async function loginUser(credentials) {
         .then(data => data.json())
 }
 
+async function registerUser(credentials) {
+    console.log("yo");
+    return fetch('http://localhost:8080/api/v1/user/registration', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+    })
+        .then(data => data.json())
+}
+
 export default function Login({ setToken }) {
 
     // handle post request with email/username and password
@@ -34,6 +46,7 @@ export default function Login({ setToken }) {
     const [password, setPassword] = useState();
 
     const handleSubmit = async e => {
+        console.log("yo");
         e.preventDefault();
         const token = await loginUser({
             "emailID": username,
@@ -48,21 +61,40 @@ export default function Login({ setToken }) {
         
     }
 
-    // const [isShowRegister, setIsShowRegister] = useState(true);
 
-    // const handleRegisterClick = () => {
-    //     setIsShowRegister((isShowRegister) => !isShowRegister);
-    //     console.log(isShowRegister);
-    // };
+    //handle registration
+    const [rUsername, setrUserName] = useState();
+    const [rPassword, setrPassword] = useState();
+    const [firstname, setFirstname] = useState();
+    const [lastname, setLastname] = useState();
+    const [emailID, setEmail] = useState();
+   
+    const handleRegistration = async e => {
+        console.log("yo");
+        e.preventDefault();
+        const token = await registerUser({
+            "id": "25",
+            "username": rUsername,
+            "password": rPassword,
+            "firstname": firstname,
+            "lastname": lastname,
+            "emailID": emailID,
+            "contactnumber": "02825632423"
+        });
+        setTimeout(function(){
+            hidePopup();
+        }, 1000);
+        
+        
+    }
 
+    // handle popup 
     const popup = document.querySelector('.popup');
-    console.log("yo"); 
+
     const showPopup = () => {
-        console.log("yo");  
          popup.classList.add('open');
     }
-    const hidePopup = () => {
-        console.log("no");    
+    const hidePopup = () => {   
         popup.classList.remove('open');
     }
 
@@ -88,11 +120,21 @@ export default function Login({ setToken }) {
             
       <div class="popup">
         <div class="blocker" onClick={hidePopup}></div>
-        <Register/>
+        <Register
+        handleRegistration={handleRegistration}
+        setrUserName={setrUserName}
+        setrPassword={setrPassword}
+        setFirstname={setFirstname}
+        setLastname={setLastname}
+        setEmail={setEmail}
+        />
+        {/* <div className={`${isShowRegister ? "active" : ""} show`}> */}
+        
+        
       </div>
       
             
-    </div>
+    // </div>
     )
 }
 
