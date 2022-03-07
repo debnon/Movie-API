@@ -8,21 +8,20 @@ import Userlist from './components/userlist/Userlist';
 import Layout from './components/layout/Layout';
 import Home from './components/Home';
 import Login from './components/login/Login';
+import useToken from './components/useToken';
 
 import './App.css';
 
 
-
 export default function App() {
 
-    const [token, setToken] = useState();
+    const { token, setToken } = useToken();
 
     if(!token) {
         return <Login setToken={setToken} />
     }
 
     return (
-        
         
         <BrowserRouter>
             <Routes>
@@ -31,7 +30,9 @@ export default function App() {
                     <Route path="dashboard" element={<Dashboard />}/>
                     <Route path="preferences" element={<Preferences />}/>
                     <Route path="userlist" element={<Userlist />}/>
+                    
                 </Route>
+                <Route path="/login" element={<Login />}/>
             </Routes>
         </BrowserRouter>
         
@@ -40,4 +41,7 @@ export default function App() {
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));
-// export default App;
+
+// validate the authorization code along with any request (i.e. when it hits the API return unauthorized)
+
+

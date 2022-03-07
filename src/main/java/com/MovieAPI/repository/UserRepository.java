@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface UserRepository extends CrudRepository<User, Long>, JpaRepository <User, Long> {
 
    Optional <User> findByEmailIDAndPassword(String emailID, String password);
-   Optional <User>  findByEmailID(String emailID);
+   Optional <User> findByEmailID(String emailID);
 
 }
