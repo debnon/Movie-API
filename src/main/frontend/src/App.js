@@ -23,7 +23,6 @@ export default function App() {
 
     return (
         
-        
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Layout />}>
@@ -31,7 +30,9 @@ export default function App() {
                     <Route path="dashboard" element={<Dashboard />}/>
                     <Route path="preferences" element={<Preferences />}/>
                     <Route path="userlist" element={<Userlist />}/>
+                    
                 </Route>
+                <Route path="/login" element={<Login />}/>
             </Routes>
         </BrowserRouter>
         
