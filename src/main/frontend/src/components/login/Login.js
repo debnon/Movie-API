@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import logo from '../../graphics/logo2.png';
+// import logo from '../../graphics/logo2.png';
+import logo from '../../graphics/wheel3.svg';
 import Register from './Register';
-// import Blocker from './Blocker';
-// import Popup from './Popup';
 
 import './Login.css';
-// import './Register.css';
 
-
-// can remove popup
 
 // const fetchUserToken =  () => {
 //     axios.post("http://localhost:8080/api/v1/user/authenticate").then(res => {
@@ -18,6 +14,7 @@ import './Login.css';
 //         setUserProfiles(res.data);
 //     });
 // };
+
 async function loginUser(credentials) {
     return fetch('http://localhost:8080/api/v1/user/authenticate', {
         method: 'POST',
@@ -70,34 +67,30 @@ export default function Login({ setToken }) {
     }
 
     return (
-        <div>
-    <div class="h1">
-    <img src={logo} alt="M logo" />
-    <h1 class="h">movie maverick</h1>
-    <p class="pr">Maverick helps you find the movies you were always looking for</p>
-    </div>  
-            <form class="main" onSubmit={handleSubmit}>
+    <div class="h0">
+        <div class="h1">
+            <img src={logo} alt="M logo" />
+            {/* <h1 class="h">movieroll</h1> */}
+            <p class="pr">Movieroll helps you find the movies you were always looking for</p>
+        </div>  
+        <form class="main" onSubmit={handleSubmit}>
             <input type="text" placeholder="Email address or phone number" class="txt" onChange={e => setUserName(e.target.value)}/><br/>
             <input type="password" placeholder="Password" class="txt" onChange={e => setPassword(e.target.value)}/><br/>
             <input type="submit" value="Log In" class="login-btn"/><br/>
             <div class="a-link">
             <a href="" class="link">Forgotten Password?</a>
             </div>
-            <div class="ca">
-                {/* <a onClick={handleRegisterClick} class="pca">Create New Account</a> */}
-                <a class="pca" onClick={showPopup}>Create New Account</a>
-                
+            
+            <div class="ca" onClick={showPopup}>
+                <a class="pca" >Create New Account</a>
             </div>
-            </form>
-            <>
+        </form>
+            
       <div class="popup">
         <div class="blocker" onClick={hidePopup}></div>
         <Register/>
-        {/* <div class="contents">
-          This is popup
-        </div> */}
       </div>
-      </>
+      
             
     </div>
     )

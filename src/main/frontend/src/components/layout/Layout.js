@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
 import { Outlet, Link } from "react-router-dom";
 import './Layout.css';
+import logo from '../../graphics/wheel4.svg';
 
 function Layout() {
 const [click, setClick] = useState(false);
@@ -29,7 +30,7 @@ return (
     <nav className='navbar'>
         <div className='navbar-container'>
         <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            Movie Maverick
+            Movie Maverick <img src={logo} alt="M logo" />
             <i className='fab fa-typo3' />
         </Link>
         <div className='menu-icon' onClick={handleClick}>

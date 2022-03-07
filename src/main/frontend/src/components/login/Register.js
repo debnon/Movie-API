@@ -32,9 +32,21 @@ const Register = ({ isShowRegister }) => {
     <div class="row clearfix">
       <div class="">
         <form>
+
+        
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
             <input type="email" name="email" placeholder="Email" required />
           </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+            <input type="email" name="username" placeholder="Username" required />
+          </div>
+        
+        {/* <div class="col_half">
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+            <input type="email" name="username" placeholder="Username" required />
+          </div>
+        </div> */}
+
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
             <input type="password" name="password" placeholder="Password" required />
           </div>
@@ -51,14 +63,16 @@ const Register = ({ isShowRegister }) => {
               <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
                 <input type="text" name="name" placeholder="Last Name" required />
               </div>
+              
             </div>
+            
           </div>
-            	<div class="input_field radio_option">
+            	{/* <div class="input_field radio_option">
               <input type="radio" name="radiogroup1" id="rd1"/>
               <label for="rd1">Male</label>
               <input type="radio" name="radiogroup1" id="rd2"/>
               <label for="rd2">Female</label>
-              </div>
+              </div> */}
               <div class="input_field select_option">
                 <select>
                   <option>Select a country</option>
