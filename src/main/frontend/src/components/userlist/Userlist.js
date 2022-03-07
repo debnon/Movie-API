@@ -8,14 +8,14 @@ const UserProfiles = () => {
     const [userProfiles, setUserProfiles] = useState([]);
 
     const fetchUserProfiles =  () => {
-        let config = {
+        const retrieveToken = JSON.parse(localStorage.getItem("token"))["jwt-token"];
+
+        axios.get("http://localhost:8080/api/v1/admin/user", {
             headers: {
-              "Authorization": localStorage.getItem("token")["jwt-token"],
-            }
-          }
-        axios.get("http://localhost:8080/api/v1/admin/user", config).then(res => {
+                Authorization: 'Bearer ' + retrieveToken
+              }
+        }).then(res => {
             console.log(res);
-            console.log(config)
             // const data = res.data;
             setUserProfiles(res.data);
         });
@@ -30,6 +30,8 @@ const UserProfiles = () => {
         return (
         <div key={index}>
             <pre><h1>{userProfile.id}: {userProfile.lastname}, {userProfile.firstname}</h1></pre>
+            
+
             <p>Username: {userProfile.username}</p>
             <p>Contact Number: {userProfile .contactnumber}</p>
         </div>
