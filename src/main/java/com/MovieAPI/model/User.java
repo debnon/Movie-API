@@ -29,6 +29,7 @@ public class User {
     @JsonIgnore
     boolean superUser;
 
+
     @Column
     @JsonIgnore
     String role = "ROLE_USER";
