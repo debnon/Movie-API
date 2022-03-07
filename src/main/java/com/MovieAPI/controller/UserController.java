@@ -42,13 +42,6 @@ public class UserController {
     @Autowired
     UserRepository userRepo;
 
-    @GetMapping("/info")
-    public User getUserDetails(){
-        // Retrieve email from the Security Context
-        String emailID = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        // Fetch and return user details
-        return userRepo.findByEmailID(emailID).get();
-    }
 
     //Registration Request
     @PostMapping("/registration")

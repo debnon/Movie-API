@@ -1,0 +1,23 @@
+.show {
+    /* display: block; */
+    transition: 0ms;
+    /* opacity: 1; */
+    cursor:pointer;
+    }
+    
+.show.active {
+transform: scale(0);
+opacity: 0;
+cursor:pointer;
+}
+
+.blocker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: ' ';
+    background: rgba(0,0,0,.5);
+    transition: 0ms;
+}

@@ -30,6 +30,7 @@ public class User {
     @Column
     boolean superUser;
 
+
     @Column
     Roles roles = Roles.ROLE_USER;
 
