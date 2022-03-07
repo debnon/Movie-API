@@ -106,4 +106,7 @@ You need to have the following softwares installed on your machine.
 
 ## Future Improvements 
 
+1. To add actors and directors information in the movie database so that user can get data based on actors and directors.
+2. To add age checks for movie data 
+
 
