@@ -8,8 +8,14 @@ const UserProfiles = () => {
     const [userProfiles, setUserProfiles] = useState([]);
 
     const fetchUserProfiles =  () => {
-        axios.get("http://localhost:8080/api/v1/admin/user").then(res => {
+        let config = {
+            headers: {
+              "Authorization": localStorage.getItem("token")["jwt-token"],
+            }
+          }
+        axios.get("http://localhost:8080/api/v1/admin/user", config).then(res => {
             console.log(res);
+            console.log(config)
             // const data = res.data;
             setUserProfiles(res.data);
         });

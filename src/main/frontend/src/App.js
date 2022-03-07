@@ -8,6 +8,7 @@ import Userlist from './components/userlist/Userlist';
 import Layout from './components/layout/Layout';
 import Home from './components/Home';
 import Login from './components/login/Login';
+import Movies from './components/movielist/Movies';
 import useToken from './components/useToken';
 
 import './App.css';
@@ -30,7 +31,7 @@ export default function App() {
                     <Route path="dashboard" element={<Dashboard />}/>
                     <Route path="preferences" element={<Preferences />}/>
                     <Route path="userlist" element={<Userlist />}/>
-                    
+                    <Route path="movielist" element={<Movies />}/>
                 </Route>
                 <Route path="/login" element={<Login />}/>
             </Routes>
