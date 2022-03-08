@@ -31,6 +31,9 @@ const MovieCards1 = () => {
             <div class="title">
             {movieProfile.title}
             </div>
+            <div class="release">
+            {movieProfile.releaseDate}
+            </div>
             </div>
             
             </>

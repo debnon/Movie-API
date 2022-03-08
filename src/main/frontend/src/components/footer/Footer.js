@@ -16,7 +16,7 @@ const Footer = () => {
       <address>
         {/* 5534 Somewhere In. The World 22193-10212<br/> */}
             
-        <a class="footer_btn" href="mailto:inquiries@movieroll.com">Email Us</a>
+        <a class="footer_btn" href="mailto:inquiries@movieroll.co.uk">Email Us</a>
       </address>
     </div>
     

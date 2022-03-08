@@ -233,5 +233,15 @@
     position:absolute;
     color: #000000;
     font-size: 20px;
+    text-align: center;
+    /* display: inline-block; */
+}
+
+.release{
+    margin-top: 380px;
+    position: absolute;
+    color: #1f1c1c;
+    font-size: 12px;
+    margin-left: auto;
     /* display: inline-block; */
 }
