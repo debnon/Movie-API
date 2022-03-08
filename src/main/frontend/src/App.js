@@ -2,8 +2,7 @@ import React, {useState, useEffect} from "react";
 import ReactDOM from "react-dom";
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Dashboard from './components/dashboard/Dashboard';
-import Preferences from './components/preferences/Preferences';
+
 import Userlist from './components/userlist/Userlist';
 import Layout from './components/layout/Layout';
 import Home from './components/Home';
@@ -28,8 +27,8 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
-                    <Route path="dashboard" element={<Dashboard />}/>
-                    <Route path="preferences" element={<Preferences />}/>
+                    
+                    
                     <Route path="userlist" element={<Userlist />}/>
                     <Route path="movielist" element={<Movies />}/>
                 </Route>
