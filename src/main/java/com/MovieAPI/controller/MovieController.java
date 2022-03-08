@@ -67,6 +67,22 @@ public class MovieController {
         return new ResponseEntity<>(requestedMovies, HttpStatus.OK);
     }
 
+//    @GetMapping({"/top"})
+//    public ResponseEntity<List<Movie>> getTopMovies() {
+//
+//    }
+
+    @GetMapping({"/curated"})
+    public ResponseEntity<List<Movie>> getCuratedMovies() {
+        List<Movie> Movies = MovieService.getCuratedMovies();
+
+        if (Movies.isEmpty()) {
+            throw new GetEmptyException("No curated movies present");
+        }
+
+        return new ResponseEntity<>(Movies, HttpStatus.OK);
+    }
+
 
     @PostMapping
     public ResponseEntity<Movie> addMovie(@RequestBody Movie Movie) {

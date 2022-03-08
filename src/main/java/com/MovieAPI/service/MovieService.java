@@ -11,6 +11,7 @@ public interface MovieService {
     List<Movie> getAllMovies();
     Movie insertMovie(Movie Movie);
     Movie getMovieById(Long id);
+    List<Movie> getCuratedMovies();
 
 //    Movie getMovieByTitle() {
 //

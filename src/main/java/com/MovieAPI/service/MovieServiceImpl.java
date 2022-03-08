@@ -19,6 +19,8 @@ public class MovieServiceImpl implements MovieService  {
     @Autowired
     MovieRepository MovieRepository;
 
+    List<Movie> curatedMovies = new ArrayList<>();
+
     public Iterable<Movie> listed() {
         return MovieRepository.findAll();
     }
@@ -73,34 +75,31 @@ public class MovieServiceImpl implements MovieService  {
         ArrayList<Set<Movie>> movieIntersections = new ArrayList<>();
 
         if (title != null) {
-            System.out.println("title query successful");
             Set<Movie> titleMovies = MovieRepository.findByTitle(title);
             movieIntersections.add(titleMovies);
         }
+
         if (description != null) {
-            System.out.println("description unsuccessful");
             Set<Movie> titleMovies = MovieRepository.findByDescription(description);
             movieIntersections.add(titleMovies);
         }
-        if (releaseDate != null) {
 
+        if (releaseDate != null) {
             Set<Movie> titleMovies = MovieRepository.findByReleaseDate(releaseDate);
-            System.out.println("release unsuccessful: " + titleMovies);
             movieIntersections.add(titleMovies);
         }
+
         if (rating != null) {
-            System.out.println("rating unsuccessful");
             Set<Movie> titleMovies = MovieRepository.findByRating(rating);
             movieIntersections.add(titleMovies);
         }
+
         if (originalLanguage != null) {
-            System.out.println("language unsuccessful");
             Set<Movie> titleMovies = MovieRepository.findByOriginalLanguage(originalLanguage);
             movieIntersections.add(titleMovies);
         }
 
         if (genres != null) {
-            System.out.println("genre unsuccessful");
             Set<Movie> titleMovies = MovieRepository.findByGenresIn(genres);
             movieIntersections.add(titleMovies);
         }
@@ -108,16 +107,16 @@ public class MovieServiceImpl implements MovieService  {
         Set<Movie> previousMovie = movieIntersections.get(0);
 
         for (Set<Movie> movieList: movieIntersections) {
-            System.out.println("Old previous movie " + previousMovie);
             requestedMovies = Sets.intersection(previousMovie, movieList);
-            System.out.println("Requested movies: " + requestedMovies);
             previousMovie = requestedMovies;
         }
-        System.out.println("all done");
-
-        //requestedMovies = MovieRepository.findByTitleAndGenre(title, genre);
 
         return requestedMovies;
+    }
+
+    @Override
+    public List<Movie> getCuratedMovies() {
+        return curatedMovies;
     }
 
 
