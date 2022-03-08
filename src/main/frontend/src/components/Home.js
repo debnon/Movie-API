@@ -1,5 +1,5 @@
 const Home = () => {
-    return <h1 align="Center"> Welcome to Movie Roll API </h1>;
+    return <h1 align="center"> Welcome to Movie Roll API </h1>;
     
   };
   
