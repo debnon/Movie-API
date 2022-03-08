@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -73,8 +74,8 @@ public class MovieController {
 //    }
 
     @GetMapping({"/curated"})
-    public ResponseEntity<List<Movie>> getCuratedMovies() {
-        List<Movie> Movies = MovieService.getCuratedMovies();
+    public ResponseEntity<List<Movie>> getCuratedMovies(@RequestParam String listNumber) {
+        List<Movie> Movies = MovieService.getCuratedMovies(listNumber);
 
         if (Movies.isEmpty()) {
             throw new GetEmptyException("No curated movies present");
@@ -84,16 +85,17 @@ public class MovieController {
     }
 
     @PostMapping({"/curated"})
-    public ResponseEntity<Movie> addCuratedMovieByID(@RequestParam Long ID) {
-        Movie movie= MovieService.addCuratedMovieByID(ID);
+    public ResponseEntity<Movie> addCuratedMovieByID(@RequestParam Long ID, @RequestParam String listNumber) {
+        Movie movie= MovieService.addCuratedMovieByID(ID, listNumber);
 
         return new ResponseEntity<>(movie, HttpStatus.OK);
     }
 
     // requestbody format ["id", "id", "id"]
     @PostMapping({"/curated/add"})
-    public ResponseEntity<List<Movie>> addCuratedMoviesByIDs(@RequestBody List<String> IDs) {
-        List<Movie> Movies= MovieService.addCuratedMoviesByIDs(IDs);
+    public ResponseEntity<List<Movie>> addCuratedMoviesByIDs(@RequestBody ArrayList<String> IDs, @RequestParam String listNumber) {
+        System.out.println(listNumber);
+        List<Movie> Movies= MovieService.addCuratedMoviesByIDs(IDs, listNumber);
 
         return new ResponseEntity<>(Movies, HttpStatus.OK);
     }

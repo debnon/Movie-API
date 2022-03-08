@@ -8,7 +8,7 @@ const MovieCards2 = () => {
     const fetchMovieProfiles =  () => {
         const retrieveToken = JSON.parse(localStorage.getItem("token"))["jwt-token"];
 
-        axios.get("http://localhost:8080/api/v1/movie/curated", {
+        axios.get("http://localhost:8080/api/v1/movie/curated?listNumber=2", {
             headers: {
                 Authorization: 'Bearer ' + retrieveToken
               }

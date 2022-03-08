@@ -19,7 +19,8 @@ public class MovieServiceImpl implements MovieService  {
     @Autowired
     MovieRepository MovieRepository;
 
-    List<Movie> curatedMovies = new ArrayList<>();
+    List<Movie> curatedMovies1 = new ArrayList<>();
+    List<Movie> curatedMovies2 = new ArrayList<>();
 
     public Iterable<Movie> listed() {
         return MovieRepository.findAll();
@@ -115,25 +116,42 @@ public class MovieServiceImpl implements MovieService  {
     }
 
     @Override
-    public List<Movie> getCuratedMovies() {
-        return curatedMovies;
+    public List<Movie> getCuratedMovies(String listNumber) {
+        if (listNumber.equals("1")) {
+            return curatedMovies1;
+        } else if (listNumber.equals("2")) {
+            return curatedMovies2;
+        }
+        return curatedMovies1;
     }
 
     @Override
-    public Movie addCuratedMovieByID(Long id) {
+    public Movie addCuratedMovieByID(Long id, String listNumber) {
         Movie curatedMovie = getMovieById(id);
-        curatedMovies.add(curatedMovie);
+        if (listNumber.equals("1")) {
+            curatedMovies1.add(curatedMovie);
+        } else if (listNumber.equals("2")) {
+            curatedMovies2.add(curatedMovie);
+        }
+
         return curatedMovie;
     }
 
     @Override
-    public List<Movie> addCuratedMoviesByIDs(List<String> IDs) {
-        for (String id : IDs) {
-            Movie curatedMovie = getMovieById(Long.valueOf(id));
-            curatedMovies.add(curatedMovie);
+    public List<Movie> addCuratedMoviesByIDs(List<String> IDs, String listNumber) {
+        if (listNumber.equals("1")) {
+            for (String id : IDs) {
+                Movie curatedMovie = getMovieById(Long.valueOf(id));
+                curatedMovies1.add(curatedMovie);
+            }
+        } else if (listNumber.equals("2")) {
+            for (String id : IDs) {
+                Movie curatedMovie = getMovieById(Long.valueOf(id));
+                curatedMovies2.add(curatedMovie);
+            }
         }
+            return curatedMovies1;
 
-        return curatedMovies;
     }
 
 
