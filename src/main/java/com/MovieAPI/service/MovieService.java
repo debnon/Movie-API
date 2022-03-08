@@ -24,6 +24,8 @@ public interface MovieService {
     Iterable<Movie> save(List<Movie> movies);
 
     Movie addCuratedMovieByID(Long id);
+
+    List<Movie> addCuratedMoviesByIDs(List<String> IDs);
 }
 
 

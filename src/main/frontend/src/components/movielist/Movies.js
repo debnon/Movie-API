@@ -11,7 +11,18 @@ const MovieProfiles = () => {
     const fetchMovieProfiles =  () => {
         const retrieveToken = JSON.parse(localStorage.getItem("token"))["jwt-token"];
         
-        axios.get("http://localhost:8080/api/v1/movie", {
+        // axios.get("http://localhost:8080/api/v1/movie", {
+        //     headers: {
+        //         Authorization: 'Bearer ' + retrieveToken
+        //       }
+        // }).then(res => {
+        //     console.log(res);
+
+        //     // const data = res.data;
+        //     setMovieProfiles(res.data);
+        // });
+
+        axios.get("http://localhost:8080/api/v1/movie/curated", {
             headers: {
                 Authorization: 'Bearer ' + retrieveToken
               }
