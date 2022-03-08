@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
+
+import MovieCards1 from "./MovieCards1";
+import MovieCards2 from "./MovieCards2";
 import './Movies.css';
 
 
@@ -47,6 +50,7 @@ const MovieProfiles = () => {
             <div class="card"><img src={weburl} class="poster" /></div>
         )
     })
+    
 };
 
 export default function Movielist() {
@@ -57,9 +61,18 @@ export default function Movielist() {
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
         <section>
-  <h2>All movies</h2>
+  <h2>Top rated movies</h2>
   <div class="cards-wrapper">
-  <MovieProfiles />
+  {/* <MovieProfiles /> */}
+  <MovieCards1 />
+  </div>
+</section>
+
+<section>
+  <h2>User top picks</h2>
+  <div class="cards-wrapper">
+  {/* <MovieProfiles /> */}
+  <MovieCards2 />
   </div>
 </section>
          {/* <div className="movielist">
