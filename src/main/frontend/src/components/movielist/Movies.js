@@ -3,6 +3,7 @@ import axios from "axios";
 
 import MovieCards1 from "./MovieCards1";
 import MovieCards2 from "./MovieCards2";
+import Footer from "../footer/Footer";
 import './Movies.css';
 
 
@@ -75,6 +76,7 @@ export default function Movielist() {
   <MovieCards2 />
   </div>
 </section>
+<Footer />
          {/* <div className="movielist">
          <h1>Application</h1>
                  <MovieProfiles />
