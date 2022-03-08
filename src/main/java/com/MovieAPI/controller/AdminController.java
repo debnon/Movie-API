@@ -4,7 +4,6 @@ import com.MovieAPI.exception.DuplicateIDException;
 import com.MovieAPI.exception.GetEmptyException;
 import com.MovieAPI.model.Movie;
 import com.MovieAPI.model.User;
-
 import com.MovieAPI.service.MovieService;
 import com.MovieAPI.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
