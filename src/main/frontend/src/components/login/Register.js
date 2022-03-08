@@ -14,7 +14,8 @@ import './Register.css';
 //         .then(data => data.json())
 // }
 
-const Register = ({ isShowRegister, setrUserName, setrPassword, setFirstname, setLastname, setEmail, handleRegistration }) => {
+const Register = ({ isShowRegister, setrUserName, setrPassword, setFirstname, 
+    setLastname, setEmail, setContactnumber, handleRegistration }) => {
 
     // const [username, setUserName] = useState();
     // const [password, setPassword] = useState();
@@ -71,6 +72,9 @@ const Register = ({ isShowRegister, setrUserName, setrPassword, setFirstname, se
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
             <input type="password" name="password" placeholder="Re-type Password" required />
           </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+            <input type="email" name="ContactNumber" placeholder="Contact Number" required onChange={e => setContactnumber(e.target.value)}/>
+          </div>
           <div class="row clearfix">
             <div class="col_half">
               <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
@@ -98,6 +102,7 @@ const Register = ({ isShowRegister, setrUserName, setrPassword, setFirstname, se
                   <option>Option 2</option>
                 </select>
                 <div class="select_arrow"></div>
+                
               </div>
             <div class="input_field checkbox_option">
             	<input type="checkbox" id="cb1"/>

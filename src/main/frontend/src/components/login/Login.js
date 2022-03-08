@@ -68,6 +68,7 @@ export default function Login({ setToken }) {
     const [firstname, setFirstname] = useState();
     const [lastname, setLastname] = useState();
     const [emailID, setEmail] = useState();
+    const [contactnumber, setContactnumber] = useState();
    
     const handleRegistration = async e => {
         console.log("yo");
@@ -79,7 +80,7 @@ export default function Login({ setToken }) {
             "firstname": firstname,
             "lastname": lastname,
             "emailID": emailID,
-            "contactnumber": "02825632423"
+            "contactnumber": contactnumber
         });
         setTimeout(function(){
             hidePopup();
@@ -127,6 +128,7 @@ export default function Login({ setToken }) {
         setFirstname={setFirstname}
         setLastname={setLastname}
         setEmail={setEmail}
+        setContactnumber={setContactnumber}
         />
         {/* <div className={`${isShowRegister ? "active" : ""} show`}> */}
         
