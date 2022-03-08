@@ -6,7 +6,7 @@ The main aim of this application is to allow users to get details of movies base
 description, rating, release date, Genre etc. 
 
 ## Design
-The UML diagrams for the application is in the UML folder which gives an overview of the classes and screens implemented. 
+The UML diagram for the application is in the UML folder which gives an overview of the classes and screens implemented. 
 
 The application is designed using below technologies:
 
@@ -47,11 +47,11 @@ the application.
 
 ## Output
 
-After starting the application the home screen where user can register should look like below: 
-
-Registration Screen 
+After starting the application the screen where user can login should look like below: 
 
 Login Screen 
+
+![img.png](img.png)
 
 The details of how to access each of the end points is provided at the url below:
 
