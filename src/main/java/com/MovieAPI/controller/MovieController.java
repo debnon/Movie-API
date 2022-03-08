@@ -83,6 +83,13 @@ public class MovieController {
         return new ResponseEntity<>(Movies, HttpStatus.OK);
     }
 
+    @PostMapping({"/curated"})
+    public ResponseEntity<Movie> addCuratedMovieByID(@RequestParam Long id) {
+        Movie movie= MovieService.addCuratedMovieByID(id);
+
+        return new ResponseEntity<>(movie, HttpStatus.OK);
+    }
+
 
     @PostMapping
     public ResponseEntity<Movie> addMovie(@RequestBody Movie Movie) {

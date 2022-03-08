@@ -119,6 +119,13 @@ public class MovieServiceImpl implements MovieService  {
         return curatedMovies;
     }
 
+    @Override
+    public Movie addCuratedMovieByID(Long id) {
+        Movie curatedMovie = getMovieById(id);
+        curatedMovies.add(curatedMovie);
+        return curatedMovie;
+    }
+
 
 
 }

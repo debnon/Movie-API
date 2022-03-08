@@ -13,10 +13,6 @@ public interface MovieService {
     Movie getMovieById(Long id);
     List<Movie> getCuratedMovies();
 
-//    Movie getMovieByTitle() {
-//
-//    }
-
     Set<Movie> getMovieByAttributes(String title, String description, String releaseDate,
                                     String rating, String originalLanguage, List<Genre> genres);
 
@@ -26,6 +22,8 @@ public interface MovieService {
     void deleteMovieById(Long id);
     Iterable<Movie> listed();
     Iterable<Movie> save(List<Movie> movies);
+
+    Movie addCuratedMovieByID(Long id);
 }
 
 
