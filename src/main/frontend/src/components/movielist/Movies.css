@@ -165,9 +165,11 @@
     overflow: auto;
     padding-bottom: 1rem;
     padding-right: var(--page-margin);
+    height: 400px;
   }
   .cards-wrapper .card {
     display: grid;
+    position: relative;
     place-content: center;
     background-color: #d0f0ee;
     color: #15928A;
@@ -225,4 +227,11 @@
     margin-left: auto;
     margin-right: auto;
     width: 400px;
+}
+.title{
+    margin-top: 320px;
+    position:absolute;
+    color: #000000;
+    font-size: 20px;
+    /* display: inline-block; */
 }
