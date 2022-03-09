@@ -58,7 +58,7 @@ function Layout() {
                     className='nav-links'
                     onClick={closeMobileMenu}
                 >
-                    Dashboard
+                    Info
                 </Link>
                 </li>
                 <li className='nav-item'>

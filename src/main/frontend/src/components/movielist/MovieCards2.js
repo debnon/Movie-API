@@ -25,7 +25,14 @@ const MovieCards2 = () => {
     return movieProfiles.map((movieProfile, index) => {
         var weburl = "https://image.tmdb.org/t/p/original/".concat(movieProfile.poster);
         return (
-            <div class="card"><img src={weburl} class="poster" /></div>
+            <div class="card"><img src={weburl} class="poster" />
+            <div class="title">
+            {movieProfile.title}
+            </div>
+            <div class="release">
+            {movieProfile.releaseDate}
+            </div>
+            </div>
         )
     })
     

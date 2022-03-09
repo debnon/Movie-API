@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Userlist from './components/userlist/Userlist';
 import Layout from './components/layout/Layout';
-import Home from './components/Home';
 import Login from './components/login/Login';
 import Movies from './components/movielist/Movies';
 import useToken from './components/useToken';
@@ -26,9 +25,7 @@ export default function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Layout />}>
-                    <Route index element={<Home />} />
-                    
-                    
+                    <Route index element={<Movies />} />
                     <Route path="userlist" element={<Userlist />}/>
                     <Route path="movielist" element={<Movies />}/>
                 </Route>
