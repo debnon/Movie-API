@@ -53,13 +53,14 @@ function Layout() {
                 </Link>
                 </li>
                 <li className='nav-item'>
-                <Link
-                    to='/dashboard'
+                <a
+                    href='http://localhost:8080/swagger-ui/index.html'
                     className='nav-links'
                     onClick={closeMobileMenu}
                 >
                     Info
-                </Link>
+                </a>
+
                 </li>
                 <li className='nav-item'>
                 <Link
