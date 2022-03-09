@@ -93,7 +93,9 @@ public class MovieController {
 
     // requestbody format ["id", "id", "id"]
     @PostMapping({"/curated/add"})
-    public ResponseEntity<List<Movie>> addCuratedMoviesByIDs(@RequestBody ArrayList<String> IDs, @RequestParam String listNumber) {
+    public ResponseEntity<List<Movie>> addCuratedMoviesByIDs(
+            @RequestBody ArrayList<String> IDs,
+            @RequestParam(required = false)  String listNumber) {
         System.out.println(listNumber);
         List<Movie> Movies= MovieService.addCuratedMoviesByIDs(IDs, listNumber);
 

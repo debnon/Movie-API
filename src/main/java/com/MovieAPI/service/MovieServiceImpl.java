@@ -139,6 +139,14 @@ public class MovieServiceImpl implements MovieService  {
 
     @Override
     public List<Movie> addCuratedMoviesByIDs(List<String> IDs, String listNumber) {
+        if (listNumber==null) {
+            for (String id : IDs) {
+                Movie curatedMovie = getMovieById(Long.valueOf(id));
+                curatedMovies1.add(curatedMovie);
+            }
+            return curatedMovies1;
+        }
+
         if (listNumber.equals("1")) {
             for (String id : IDs) {
                 Movie curatedMovie = getMovieById(Long.valueOf(id));
