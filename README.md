@@ -6,7 +6,7 @@ The main aim of this application is to allow users to get details of movies base
 description, rating, release date, Genre etc. 
 
 ## Design
-The UML diagrams for the application is in the UML folder which gives an overview of the classes and screens implemented. 
+The UML diagram for the application is in the UML folder which gives an overview of the classes and screens implemented. 
 
 The application is designed using below technologies:
 
@@ -47,11 +47,11 @@ the application.
 
 ## Output
 
-After starting the application the home screen where user can register should look like below: 
-
-Registration Screen 
+After starting the application the screen where user can login should look like below: 
 
 Login Screen 
+
+![img.png](img.png)
 
 The details of how to access each of the end points is provided at the url below:
 
@@ -66,7 +66,7 @@ To run this project you need to fork the repository to your git account and clon
 You need to have the following softwares installed on your machine.
 1. Java (above version 8) 
 2. Eclipse/Intellij IDE for Java/Sprigboot 
-3. Visual Studio Code for React 
+3. Visual Studio Code with React libraries installed
 4. Postgres SQL
 
 #### Steps to run the project: 
@@ -96,13 +96,33 @@ You need to have the following softwares installed on your machine.
 
    _create database movies;_ 
 
-2. Once the database is ready navigate to MovieApiApplication.java and run the application as Springboot application. 
-   You should see that the application run as a springboot application on embedded tomcat server and you will be able to 
-   access all the endpoints for user,movies and admin based on the roles.
+2. By default each registered user will have the role as user and if we have to access the admin end points you need to
+   have admin role. A user can be assigned admin role only from the database and that can be done using below query.
 
-3. To run application tests go to the terminal and use below command
-   mvn test
+   _Update users set roles=1 where username="user1";_
+
+3. Once the database is ready navigate to MovieApiApplication.java and run the application as Springboot application. 
+   You should see that the application run as a springboot application on embedded tomcat server and you will be able to 
+   access all the endpoints for user,movies and admin based on the roles from postman or through cURL commands.
+   The server starts on below port:
+
+   _http://localhost:8080_
+
+4. To run application tests go to the terminal and use below command
+
+   _mvn test_
+
    You should be able to see all the tests running successfully.
+
+5. To run the frontend application you need to import the folder frontend into Visual Studio Code and run the command below
+   from command prompt:
+
+   _npm start_ 
+
+   The server starts on below port and you should able to see login page successfully. 
+
+   _http://localhost:3000_
+
 
 ## Future Improvements 
 
