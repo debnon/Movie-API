@@ -37,6 +37,7 @@ function Layout() {
 
     return (
         <>
+        
         <nav className='navbar'>
             <div className='navbar-container'>
             <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
@@ -53,13 +54,14 @@ function Layout() {
                 </Link>
                 </li>
                 <li className='nav-item'>
-                <Link
-                    to='/dashboard'
+                <a
+                    href='http://localhost:8080/swagger-ui/index.html'
                     className='nav-links'
                     onClick={closeMobileMenu}
                 >
-                    Dashboard
-                </Link>
+                    Info
+                </a>
+
                 </li>
                 <li className='nav-item'>
                 <Link

@@ -8,7 +8,13 @@ const UserProfiles = () => {
     const [userProfiles, setUserProfiles] = useState([]);
 
     const fetchUserProfiles =  () => {
-        axios.get("http://localhost:8080/api/v1/admin/user").then(res => {
+        const retrieveToken = JSON.parse(localStorage.getItem("token"))["jwt-token"];
+
+        axios.get("http://localhost:8080/api/v1/admin/user", {
+            headers: {
+                Authorization: 'Bearer ' + retrieveToken
+              }
+        }).then(res => {
             console.log(res);
             // const data = res.data;
             setUserProfiles(res.data);
@@ -24,6 +30,8 @@ const UserProfiles = () => {
         return (
         <div key={index}>
             <pre><h1>{userProfile.id}: {userProfile.lastname}, {userProfile.firstname}</h1></pre>
+            
+
             <p>Username: {userProfile.username}</p>
             <p>Contact Number: {userProfile .contactnumber}</p>
         </div>
